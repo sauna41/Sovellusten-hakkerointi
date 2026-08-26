@@ -83,7 +83,7 @@ Opiskeluympäristöstä muodostetaan yhteyksiä ulkoisiin pilvipalveluihin, kute
 <img width="824" height="469" alt="image" src="https://github.com/user-attachments/assets/aeed2046-05b8-4412-ba81-c1c9b4cd5e46" />
 
 
-**Todisteet**
+### **Todentaminen**
 
 1. Kurssin [GitHub](https://github.com/sauna41/Sovellusten-hakkerointi/tree/main) dokumentaatio
 
@@ -102,7 +102,7 @@ Opiskeluympäristöstä muodostetaan yhteyksiä ulkoisiin pilvipalveluihin, kute
    ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-#### b) Linking the Assignment to the Standard. Identify at least two interested parties in the context of your home network.
+#### b) ISO-standardiin linkittäminen
 
 
 | Kiinnostunut osapuoli | Vaatimus | ISO 27001 viite | Todiste |
