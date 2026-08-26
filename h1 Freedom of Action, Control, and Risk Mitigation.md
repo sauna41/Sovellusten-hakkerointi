@@ -61,7 +61,7 @@ ISP:n verkko ei ole omistuksessani eikä hallinnassani.
 
 #### Pilvipalveluiden infrastruktuuri
 
-- Googlen & GitHubin palveluiden infra (ei hallintaa)
+Googlen & GitHubin palveluiden infra (ei hallintaa)
 
 <br>
 <br>
@@ -95,7 +95,7 @@ Opiskeluympäristöstä muodostetaan yhteyksiä ulkoisiin pilvipalveluihin, kute
    <img width="622" height="512" alt="image" src="https://github.com/user-attachments/assets/99e18b59-8785-4894-9592-e96c2de1b85a" />
 
 4. ISMS-dokumentaatio
-   ISMS-dokumentti kertoo, mitä järjestelmiä, laitteita ja tietoja soveltamisalaan kuuluu ja mitä ei.
+   - ISMS-dokumentti kertoo, mitä järjestelmiä, laitteita ja tietoja soveltamisalaan kuuluu ja mitä ei.
 
 5. Verkkokaavio
    Kertoo soveltamisalan alueet ja niiden yhteydet toisiinsa
