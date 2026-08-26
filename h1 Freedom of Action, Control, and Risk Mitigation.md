@@ -19,7 +19,7 @@ ________________________________________________________________________________
 
 ISMS on tietoturvan johtamisjärjestelmä, jota käytetään riskien tunnistamiseen, tiedon suojaamiseen ja tietoturvan kehittämiseen. ISMS ei ole yksittäinen dokumentti tai ohjelmisto – vaan kokonaisvaltainen viitekehys, joka kokoaa kaiken tietoturvatyön yhteen (Pitkänen, T. 2025).
 
-Sisällytän soveltamisalaan järjestelmät ja tiedot, joita käytetään kurssin suorittamiseen tai ovat harjoitteluympäristön kannalta oleellisia osia.
+Sisällytän soveltamisalaan järjestelmät ja tiedot, joita käytetään kurssin suorittamiseen tai ovat oman opiskeluympäristöni kannalta oleellisia osia.
 
 ### Soveltamisalan kattavuus
 
@@ -33,12 +33,12 @@ Sisällytän soveltamisalaan järjestelmät ja tiedot, joita käytetään kurssi
 
 - Lenovo ThinkPad kannettava tietokone (Windows)
 - VirtualBoxissa Kali Linux
-- Android matkapuhelin
+- Android matkapuhelin (kaksivaiheinen tunnistautuminen)
 
 #### Informaatio & Data
 
-- Kurssimateriaali (Moodle, Tero Karvisen verkkosivut)
-- GitHub-repositoriot
+- Kurssimateriaali (Moodle, Tero Karvisen verkkosivut, lähdesivut)
+- GitHub-repositoriot (raportit, harjoitusten dokumentaatio)
 - Labraharjoitukset
 
 
@@ -53,7 +53,7 @@ Sisällytän soveltamisalaan järjestelmät ja tiedot, joita käytetään kurssi
 - PlayStation pelikonsoli
 - IoT-laitteet (valaistus, kaiuttimet)
 
-Kurssiin liittymättömät laitteet rajataan soveltamisalasta pois.
+Kurssiin liittymättömät laitteet rajataan soveltamisalasta pois, sillä ne eivät ole tarvittavia tai tuo muuten lisäarvoa kurssin suorittamiseen.
 
 #### ISP:n oma verkko
 
@@ -61,7 +61,7 @@ ISP:n verkko ei ole omistuksessani eikä hallinnassani.
 
 #### Pilvipalveluiden infrastruktuuri
 
-Googlen & GitHubin palveluiden infra (ei hallintaa)
+Googlen & GitHubin palveluiden infra ei ole hallinnassani.
 
 <br>
 <br>
@@ -71,7 +71,7 @@ Googlen & GitHubin palveluiden infra (ei hallintaa)
 
 **Kotiverkko <--> Internet**
 
-Kotiverkon ja Internetin rajapinta on reitittimessä. Se välittää liikennettä ISP- ja kotiverkon välillä.
+Kotiverkon ja Internetin rajapinta on reitittimessä. Reititin välittää liikenteen ISP- ja kotiverkon välillä.
 
 **Opiskeluympäristö <--> Pilvipalvelut**
 
@@ -95,10 +95,10 @@ Opiskeluympäristöstä muodostetaan yhteyksiä ulkoisiin pilvipalveluihin, kute
    <img width="622" height="512" alt="image" src="https://github.com/user-attachments/assets/99e18b59-8785-4894-9592-e96c2de1b85a" />
 
 4. ISMS-dokumentaatio
-   ISMS-dokumentti kertoo, mitä järjestelmiä, laitteita ja tietoja soveltamisalaan kuuluu ja mitä ei.
+   - ISMS-dokumentti kertoo, mitä järjestelmiä, laitteita ja tietoja soveltamisalaan kuuluu ja mitä ei.
 
-5. Verkkokaavio
-   Kertoo soveltamisalan alueet ja niiden yhteydet toisiinsa
+6. Verkkokaavio
+   - Kertoo soveltamisalan alueet ja niiden yhteydet toisiinsa
    ________________________________________________________________________________________________________________________________________________________________________________________
 
 
