@@ -61,13 +61,22 @@ ISP:n verkko ei ole omistuksessani eikä hallinnassani.
 
 #### Pilvipalveluiden infrastruktuuri
 
-- Googlen & GitHubin palvelimet (ei hallintaa)
+- Googlen & GitHubin palveluiden infra (ei hallintaa)
 
 <br>
 <br>
 
 
-### Key interfaces and boundaries
+### Rajapinnat
+
+**Kotiverkko <--> Internet**
+
+Kotiverkon ja Internetin rajapinta on reitittimessä. Se välittää liikennettä ISP- ja kotiverkon välillä.
+
+**Opiskeluympäristö <--> Pilvipalvelut**
+
+Opiskeluympäristöstä muodostetaan yhteyksiä ulkoisiin pilvipalveluihin, kuten Googlen eri palveluihin & GitHubiin sekä oppilaitoksen järjestelmiin. 
+
 
 
 
@@ -87,6 +96,9 @@ ISP:n verkko ei ole omistuksessani eikä hallinnassani.
 
 4. ISMS-dokumentaatio
    ISMS-dokumentti kertoo, mitä järjestelmiä, laitteita ja tietoja soveltamisalaan kuuluu ja mitä ei.
+
+5. Verkkokaavio
+   Kertoo soveltamisalan alueet ja niiden yhteydet toisiinsa
    ________________________________________________________________________________________________________________________________________________________________________________________
 
 
