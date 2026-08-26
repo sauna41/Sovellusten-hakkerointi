@@ -19,7 +19,7 @@ ________________________________________________________________________________
 
 ISMS on tietoturvan johtamisjärjestelmä, jota käytetään riskien tunnistamiseen, tiedon suojaamiseen ja tietoturvan kehittämiseen. ISMS ei ole yksittäinen dokumentti tai ohjelmisto – vaan kokonaisvaltainen viitekehys, joka kokoaa kaiken tietoturvatyön yhteen (Pitkänen, T. 2025).
 
-Tässä kohdassa ISMS koskee omaa kotiverkkoani ja opiskeluympäristöäni. Ympäristö sisältää niin fyysisiä kuin virtuaalisia järjestelmiä. 
+Sisällytän soveltamisalaan järjestelmät ja tiedot, joita käytetään kurssin suorittamiseen tai ovat harjoitteluympäristön kannalta oleellisia osia.
 
 ### Soveltamisalan kattavuus
 
@@ -28,7 +28,6 @@ Tässä kohdassa ISMS koskee omaa kotiverkkoani ja opiskeluympäristöäni. Ymp�
 - Reititin
 - Wi-Fi
 - LAN
-- Erinäiset IoT-laitteet
 
 #### Laitteet
 
@@ -54,11 +53,11 @@ Tässä kohdassa ISMS koskee omaa kotiverkkoani ja opiskeluympäristöäni. Ymp�
 - PlayStation pelikonsoli
 - IoT-laitteet (valaistus, kaiuttimet)
 
-Nämä eivät ole oleellisia kurssiharjoitusten osalta
+Kurssiin liittymättömät laitteet rajataan soveltamisalasta pois.
 
 #### ISP:n oma verkko
 
-- Muodostaa ulkoisen ympäristön, johon minulla ei ole hallintaa
+ISP:n verkko ei ole omistuksessani eikä hallinnassani. 
 
 #### Pilvipalveluiden infrastruktuuri
 
@@ -78,40 +77,6 @@ Router toimii tärkeänä rajapintana.
 Firewall kontrolloi liikennettä sisäverkon ja Internetin välillä.
 WAN-yhteys yhdistää kotiverkon ISP:n verkkoon.
 
-
-**Study environment ↔ Cloud services**
-
-Opiskeluympäristö
-GitHub / GitLab
-Google Drive
-Oppilaitoksen LMS
-Mahdolliset muut kurssipalvelut
-
-Näissä käytetään esimerkiksi:
-
-HTTPS
-MFA
-SSH
-API-avaimia tarvittaessa
-Remote connections
-
-Mahdollisia yhteyksiä:
-
-VPN
-SSH
-RDP
-
-Näiden yhteydessä pitäisi dokumentoida:
-
-mistä yhteys tulee
-mihin se päättyy
-mitä järjestelmää se käyttää
-miten yhteys suojataan
-Suppliers / service providers
-ISP
-Router/device manufacturer
-Cloud service providers
-Educational institution
 
 Näitä ei välttämättä sisällytetä omaan ISMS-scopeen kokonaisuudessaan, mutta ne muodostavat ulkoisia riippuvuuksia ja rajapintoja.
 
@@ -133,7 +98,9 @@ The interfaces and boundaries, such as internet, cloud services, and remote conn
 3. Reitittimen asetukset & kotiverkossa olleiden laitteiden inventaario
    <img width="622" height="512" alt="image" src="https://github.com/user-attachments/assets/99e18b59-8785-4894-9592-e96c2de1b85a" />
 
-5. ________________________________________________________________________________________________________________________________________________________________________________________
+4. ISMS-dokumentaatio
+   ISMS-dokumentti kertoo, mitä järjestelmiä, laitteita ja tietoja soveltamisalaan kuuluu ja mitä ei.
+   ________________________________________________________________________________________________________________________________________________________________________________________
 
 
 #### b) Linking the Assignment to the Standard. Identify at least two interested parties in the context of your home network.
