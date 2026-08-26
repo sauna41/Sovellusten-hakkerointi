@@ -16,11 +16,6 @@ ________________________________________________________________________________
 
 ## ISMS Scope - kotiverkko & opiskeluympäristö
 
-a) Basic Level. Define the ISMS scope for your home network and study lab (½–1 page). Describe at least the following:
-a1) What is included in the scope
-Basic home network infrastructure: router, Wi-Fi, possible network shares or NAS, printer, and IoT devices where relevant.
-Devices used for the course exercises: laptop or workstation, possible virtual machines, a lab server such as a Linux VM, and a phone if you use it for MFA.
-Information and data: course materials, personal notes, repositories, lab materials, and possible credentials or cryptographic keys.
 
 ISMS on tietoturvan johtamisjärjestelmä, jota käytetään riskien tunnistamiseen, tiedon suojaamiseen ja tietoturvan kehittämiseen. ISMS ei ole yksittäinen dokumentti tai ohjelmisto – vaan kokonaisvaltainen viitekehys, joka kokoaa kaiken tietoturvatyön yhteen (Pitkänen, T. 2025).
 
@@ -48,11 +43,8 @@ Tässä kohdassa ISMS koskee omaa kotiverkkoani ja opiskeluympäristöäni. Ymp�
 - Labraharjoitukset
 
 
-
-
-a2) What is excluded from the scope and why
-Examples of exclusions: devices belonging to other family members, smart TVs, game consoles, an employer-managed computer, and the ISP’s network on the internet side of your router.
-Justify the exclusions based on factors such as ownership, manageability, lack of relevance to the course, or risk acceptance.
+<br>
+<br>
 
 ### Soveltamisalan rajaus
 
@@ -68,10 +60,12 @@ Nämä eivät ole oleellisia kurssiharjoitusten osalta
 
 - Muodostaa ulkoisen ympäristön, johon minulla ei ole hallintaa
 
-### Pilvipalveluiden infrastruktuuri
+#### Pilvipalveluiden infrastruktuuri
 
 - Googlen & GitHubin palvelimet (ei hallintaa)
 
+<br>
+<br>
 
 
 ### Key interfaces and boundaries
@@ -128,14 +122,18 @@ The “Home Network / Study Lab” area (in scope).
 The “External Environment” (out of scope).
 The interfaces and boundaries, such as internet, cloud services, and remote connections.
 
-**Evidence Addendum**
+**Todisteet**
 
 1. Kurssin [GitHub](https://github.com/sauna41/Sovellusten-hakkerointi/tree/main) dokumentaatio
 
 
 2. VirtualBox, jossa Kali Linux
       <img width="899" height="437" alt="image" src="https://github.com/user-attachments/assets/a525dcb6-4823-4928-9c1b-d025e673009e" />
-________________________________________________________________________________________________________________________________________________________________________________________
+
+3. Reitittimen asetukset & kotiverkossa olleiden laitteiden inventaario
+   <img width="622" height="512" alt="image" src="https://github.com/user-attachments/assets/99e18b59-8785-4894-9592-e96c2de1b85a" />
+
+5. ________________________________________________________________________________________________________________________________________________________________________________________
 
 
 #### b) Linking the Assignment to the Standard. Identify at least two interested parties in the context of your home network.
