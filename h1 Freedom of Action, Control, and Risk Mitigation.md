@@ -70,22 +70,9 @@ ISP:n verkko ei ole omistuksessani eikä hallinnassani.
 ### Key interfaces and boundaries
 
 
-Kotiverkko <--> Internet
 
-Kotiverkon ja Internetin välinen rajapinta on reitittimessä. Se vastaa liikenteen reitittämisestä sisäverkon ja ISP:n välillä WAN:in avulla. 
-Router toimii tärkeänä rajapintana.
-Firewall kontrolloi liikennettä sisäverkon ja Internetin välillä.
-WAN-yhteys yhdistää kotiverkon ISP:n verkkoon.
+<img width="824" height="469" alt="image" src="https://github.com/user-attachments/assets/aeed2046-05b8-4412-ba81-c1c9b4cd5e46" />
 
-
-Näitä ei välttämättä sisällytetä omaan ISMS-scopeen kokonaisuudessaan, mutta ne muodostavat ulkoisia riippuvuuksia ja rajapintoja.
-
-Deliverables
-A scope description of ½–1 page.
-One simple network and interface diagram. Boxes and arrows are sufficient. The diagram must show:
-The “Home Network / Study Lab” area (in scope).
-The “External Environment” (out of scope).
-The interfaces and boundaries, such as internet, cloud services, and remote connections.
 
 **Todisteet**
 
