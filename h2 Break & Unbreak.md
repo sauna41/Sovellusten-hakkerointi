@@ -141,6 +141,8 @@ Karvinen, T. Hack'n Fix. 2024. Luettavissa: https://terokarvinen.com/hack-n-fix/
 
 Karvinen, T. Find Hidden Web Directories - Fuzz URLs with ffuf. 2023. Luettavissa: https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/. Luettu 27.8.2026.
 
-ChatGPT. Prompt: " Käytettävissä: chatgpt.com. Käytetty 27.8.2026.
+ChatGPT. Käytettävissä: chatgpt.com. Käytetty 27.8.2026.
+
+SQL SELECT TOP, LIMIT and FETCH FIRST. W3 Schools. https://www.w3schools.com/sql/sql_top.asp. Luettu 27.8.2026.
 
 
