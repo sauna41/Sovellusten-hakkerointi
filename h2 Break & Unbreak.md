@@ -40,6 +40,14 @@ ________________________________________________________________________________
 
 [Karvinen 2006: Report Writing (in Finnish)](https://terokarvinen.com/2006/raportin-kirjoittaminen-4/)
 
+Hyvö raportti on
+
+- Toistettava: Toisen opiskelijan pitäisi päästä samaan lopputulemaan raportin pohjalta.
+- Täsmällinen: Mitä komentoja käytettiin, mitä ne tekivät, tuliko virheilmoituksia?
+- Helppolukuinen: Väliotsikot, sopiva kielioppi
+- Lähteet: lähdeviitteet ja lähdeluettelo saatavilla
+- Mokia tai kiellettyä on asioiden keksiminen päästä ja plagiointi niin tekstin kuin kuvien suhteen
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### a) Break into 010-staff-only. See Karvinen 2024: Hack'n Fix
