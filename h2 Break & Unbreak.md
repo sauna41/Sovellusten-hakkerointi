@@ -12,36 +12,39 @@ ________________________________________________________________________________
 
 ### x) Read/watch/listen and summarize
 
-OWASP: OWASP Top 10: A01 Broken Access Control
+[OWASP: OWASP Top 10: A01 Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
 
-Karvinen 2023: Find Hidden Web Directories - Fuzz URLs with ffuf
+[Karvinen 2023: Find Hidden Web Directories - Fuzz URLs with ffuf](https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/)
 
-PortSwigger: Access control vulnerabilities and privilege escalation
+[PortSwigger: Access control vulnerabilities and privilege escalation](https://portswigger.net/web-security/access-control)
 
-Karvinen 2006: Report Writing (in Finnish)
+[Karvinen 2006: Report Writing (in Finnish)](https://terokarvinen.com/2006/raportin-kirjoittaminen-4/)
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### a) Break into 010-staff-only. See Karvinen 2024: Hack'n Fix
 
-Latasin Tero Karvisen [Hack'n Fix](https://terokarvinen.com/hack-n-fix/) sivun ohjeiden mukaisesti _teros-challenge.zip_ -tiedoston ja purin sen. Sisältönä oli erilaisia haasteita. 
-
+Latasin Tero Karvisen [Hack'n Fix](https://terokarvinen.com/hack-n-fix/) sivun ohjeiden mukaisesti _teros-challenge.zip_ -tiedoston ja purin sen. Sieltä löytyi 010-staff-only -tiedosto, jonka tavoitteena oli saada tietoon admin-käyttäjän salasana, joka sisälsi merkkijonon **SUPERADMIN.** 
 
 Käynnistin ohjelman ```python3 staff-only.py``` komennolla, jonka tulosteesta selvisi IP-osoite. 
 
 <img width="724" height="179" alt="image" src="https://github.com/user-attachments/assets/aa57856e-8fca-4893-bef2-3d773522080b" />
 
 
-Navigoin Firefoxin verkkoselaimessa saatuun IP-osoitteeseen ja pääsin kirjautumissivulle. Syöttämällä tekstikenttään kerrottu PIN-koodi 123, sivusto generoi salasanan _Somedude_ ja kaikki muut kokeilemani numeroyhdistelmät palauttivat _(not found)_. Jos kenttään yritti syöttää muuta kun numeroita, virheilmoitus pyysi käyttämään vain numeroita. 
-
+Navigoin Firefoxin verkkoselaimessa saatuun IP-osoitteeseen ja pääsin kirjautumissivulle. Syöttämällä tekstikenttään sivulla kerrottu PIN-koodi 123, sivusto generoi salasanan _Somedude_. 
 
 <img width="745" height="394" alt="image" src="https://github.com/user-attachments/assets/4141fe04-00f0-4293-a03d-a89c1dcbafe0" />
 
-Avasin viereen toisen terminaalin ja tarkastelin sivustoa sieltä. Ajoin seuraavaksi ```curl -X POST http://127.0.0.1:5000/ -d "pin=' OR '1'='1"```, joka syötti SQL-injektion palvelimelle. Injektio toteutti SQL-kyselyn mallia ```SELECT password FROM pins WHERE pin='' OR pin='11112222333' -- ';```, joka palautti admin-salasanan:
 
-**SUPERADMIN%%rootALL-FLAG{Tero-e45f8764675e4463db969473b6d0fcdd}**
+Kaikki muut kokeilemani numeroyhdistelmät palauttivat _(not found)_. Jos kenttään yritti syöttää muuta kun numeroita, virheilmoitus pyysi käyttämään vain numeroita. SQL-injektio suoraan lomakkeeseen ei täten tuntunut onnistuvan. Tarkastelin HTML-sivustoa tarkemmin dev-toolsseilla ja havaitsin, että lomakkeen HTML-elementti oli mallia _input type="number"_, joka pakotti syötteen numeroiksi. Muokkaamalla tämän tekstiksi, kykenin syöttämään SQL-injektion suoraan lomakkeeseen. Syöteellä ```' OR 1=1; --``` onnistuin saamaan esiin _foo_ salasanan. Tämä oli edistystä mutta ei kuitenkaan vielä haettu admin-salasana. 
 
-<img width="757" height="307" alt="image" src="https://github.com/user-attachments/assets/1663aadd-a319-4b35-becc-944b8d448aef" />
+Tutkin eri lähteitä SQL-injektioista mutta en keksinyt miten saisin edettyä tehtävässä. Sain Karvisen sivulta vinkin, että LIMIT -parametrilla saisin rajattua tuloksia, joten tutustuin LIMITiin [W3 Schoolin](https://www.w3schools.com/sql/sql_top.asp) kautta ja päädyin lopulta kokeilemaan summamutikassa eri arvoja. Lopulta ```' OR 1=1 LIMIT 2,1; --``` toimi ja sain pääsyn admin-salasanaan.
+
+
+
+
+
+<img width="975" height="585" alt="image" src="https://github.com/user-attachments/assets/6d6bde6f-35db-4615-b1c1-6f97e52973ba" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -93,14 +96,16 @@ Kun vihdoin sain luotua uuden käyttäjän kokeilin klikkailla eri linkkejä siv
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-### e) Fix the 020-your-eyes-only vulnerability. Demonstrate with a test that your solution works.
+### e) Fix the 020-your-eyes-only vulnerability
+
+
+Varmistin asian vielä navigoimalla uudelleen admin-console -sivulle. Tällä kertaa pääsy sinne oli kuitenkin estetty ja tuloksena oli _403 Forbidden_
+
+<img width="743" height="128" alt="image" src="https://github.com/user-attachments/assets/05a4ee5d-1287-46f0-b215-ca79614d5157" />
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-g) Optional. Introductory exercise that helps solve 010-staff-only. Solve Portswigger Academy's "Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data".
-h) Optional. Introductory exercise that helps solve 010-staff-only. Solve Portswigger Academy's "Lab: SQL injection vulnerability allowing login bypass"
-
-________________________________________________________________________________________________________________________________________________________________________________________
 
 
 #### Lähteet:
@@ -110,5 +115,7 @@ Karvinen, T. Sovellusten hakkerointi kurssimateriaali. Luettavissa: https://tero
 Karvinen, T. Hack'n Fix. 2024. Luettavissa: https://terokarvinen.com/hack-n-fix/. Luettu 27.8.2026.
 
 Karvinen, T. Find Hidden Web Directories - Fuzz URLs with ffuf. 2023. Luettavissa: https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/. Luettu 27.8.2026.
+
+ChatGPT. Prompt: " Käytettävissä: chatgpt.com. Käytetty 27.8.2026.
 
 
