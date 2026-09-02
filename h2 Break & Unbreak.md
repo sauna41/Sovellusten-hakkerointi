@@ -58,11 +58,13 @@ Käynnistin ohjelman ```python3 staff-only.py``` komennolla, jonka tulosteesta s
 
 <img width="724" height="179" alt="image" src="https://github.com/user-attachments/assets/aa57856e-8fca-4893-bef2-3d773522080b" />
 
+<br/><br/>
 
 Navigoin Firefoxin verkkoselaimessa saatuun IP-osoitteeseen ja pääsin kirjautumissivulle. Syöttämällä tekstikenttään sivulla kerrottu PIN-koodi 123, sivusto generoi salasanan _Somedude_. 
 
 <img width="745" height="394" alt="image" src="https://github.com/user-attachments/assets/4141fe04-00f0-4293-a03d-a89c1dcbafe0" />
 
+<br/><br/>
 
 Kaikki muut kokeilemani numeroyhdistelmät palauttivat _(not found)_. Jos kenttään yritti syöttää muuta kun numeroita, virheilmoitus pyysi käyttämään vain numeroita. SQL-injektio suoraan lomakkeeseen ei täten tuntunut onnistuvan. Tarkastelin HTML-sivustoa tarkemmin dev-toolsseilla ja havaitsin, että lomakkeen HTML-elementti oli mallia _input type="number"_, joka pakotti syötteen numeroiksi. Muokkaamalla tämän tekstiksi, kykenin syöttämään SQL-injektion suoraan lomakkeeseen. Syöteellä ```' OR 1=1; --``` onnistuin saamaan esiin _foo_ salasanan. Tämä oli edistystä mutta ei kuitenkaan vielä haettu admin-salasana. 
 
@@ -115,6 +117,12 @@ Päästiin sivulle:
 <img width="959" height="288" alt="image" src="https://github.com/user-attachments/assets/93875d9e-c8f2-4478-b076-9c22b570ad76" />
 
 Yritin luoda uuden käyttäjän mutta jostain syystä sivusto palautti minut aina vaan "Welcome back" näkymään eikä kirjautuminen onnistunut. Syväluotaavaan tutkimisen jälkeen selvisi, että koska selaimessani oli dark mode päällä, en nähnyt rekisteröitymissivun tekstiä, mikä kertoi, ettei käyttäjätunnukseni/salasani olleet sopivat... Mitä tästä opittiin? Jos sivusto näyttää heti alkuun rikkinäiseltä, kannattaa tutkailla käyttöliittymää / CSS:ää ennen kuin siirtyy backendin puolelle.
+
+<br/><br/>
+
+<img width="549" height="720" alt="image" src="https://github.com/user-attachments/assets/cbefd76b-bb36-4d57-bff0-38f39c6e0705" />
+
+<br/><br/>
 
 Kun vihdoin sain luotua uuden käyttäjän kokeilin klikkailla eri linkkejä sivustolla. Pääsin tarkastelemaan omaa dataa mutta _Admin dashboard_ oli 403 forbidden. Ffuffasin sivun, joka palautti yhden tuloksen: _admin-console._ Kokeilin sisäänkirjautuneena lisätä tämän URLiin, joka johdatti salaiselle Admin sivustolle ja tehtävä oli ratkaistu.
 
