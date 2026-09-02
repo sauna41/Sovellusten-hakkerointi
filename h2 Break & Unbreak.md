@@ -74,12 +74,24 @@ Tämä palauttikin vaan enää yhden tuloksen: adminin. Lisäämällä _/admin_ 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-### d) Break into 020-your-eyes-only. See Karvinen 2024: Hack'n Fix
+### d) Break into 020-your-eyes-only
+
+Seuraamalla jälleen [Karvisen sivulta](https://terokarvinen.com/hack-n-fix/) löytyviä ohjeita, aloitin luomalla virtuaaliympäristön _virtualenv_. 
 
 
+Päästiin sivulle:
 
+<img width="959" height="288" alt="image" src="https://github.com/user-attachments/assets/93875d9e-c8f2-4478-b076-9c22b570ad76" />
+
+Yritin luoda uuden käyttäjän mutta jostain syystä sivusto palautti minut aina vaan "Welcome back" näkymään eikä kirjautuminen onnistunut. Syväluotaavaan tutkimisen jälkeen selvisi, että koska selaimessani oli dark mode päällä, en nähnyt rekisteröitymissivun tekstiä, mikä kertoi, ettei käyttäjätunnukseni/salasani olleet sopivat... Mitä tästä opittiin? Jos sivusto näyttää heti alkuun rikkinäiseltä, kannattaa tutkailla käyttöliittymää / CSS:ää ennen kuin siirtyy backendin puolelle.
+
+Kun vihdoin sain luotua uuden käyttäjän kokeilin klikkailla eri linkkejä sivustolla. Pääsin tarkastelemaan omaa dataa mutta _Admin dashboard_ oli 403 forbidden. Ffuffasin sivun, joka palautti yhden tuloksen: _admin-console._ Kokeilin sisäänkirjautuneena lisätä tämän URLiin, joka johdatti salaiselle Admin sivustolle ja tehtävä oli ratkaistu.
+
+
+<img width="983" height="283" alt="image" src="https://github.com/user-attachments/assets/0fa5086f-6090-4595-93e8-7bf5869bdb06" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
+
 
 ### e) Fix the 020-your-eyes-only vulnerability. Demonstrate with a test that your solution works.
 
@@ -95,8 +107,8 @@ ________________________________________________________________________________
 
 Karvinen, T. Sovellusten hakkerointi kurssimateriaali. Luettavissa: https://terokarvinen.com/application-hacking/#homework. Luettu 27.8.2026.
 
-Karvinen, T. Hack'n Fix. 2026. Luettavissa: https://terokarvinen.com/hack-n-fix/. Luettu 27.8.2026.
+Karvinen, T. Hack'n Fix. 2024. Luettavissa: https://terokarvinen.com/hack-n-fix/. Luettu 27.8.2026.
 
-Karvinen, T. Find Hidden Web Directories - Fuzz URLs with ffuf. 2026. Luettavissa: https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/. Luettu 27.8.2026.
+Karvinen, T. Find Hidden Web Directories - Fuzz URLs with ffuf. 2023. Luettavissa: https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/. Luettu 27.8.2026.
 
 
