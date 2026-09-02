@@ -118,6 +118,11 @@ ________________________________________________________________________________
 
 ### e) Fix the 020-your-eyes-only vulnerability
 
+Lähdin tutkimaan ensin mistä päin lähdekoodia löytäisin haavoittuvuuden. Tiesin suunnilleen mitä etsin, joten oikea tiedosto löytyi suht nopeasti. Avasin halutun tiedoston microlla ```micro views.py```. Sieltä löysin, että _AdminShowAllView_ näytti admin konsolin kunhan käyttäjä oli olemassa. Muokkasin riviä lisäämällä lauseen "and self.request.user.is_staff". Tämä lisäsi ehdoksi, että käyttäjän tulee olla myös admin, jotta konsolin saa esiin. Tässä kohtaa käytin oikean koodin luomiseen ChatGPT:tä promptaamalla: "Korjaa rivi niin, että tavallinen käyttäjä ei saa näkymää esiin".
+
+
+<img width="817" height="103" alt="image" src="https://github.com/user-attachments/assets/db6134a1-2135-46f5-8de7-555fae0c4914" />
+
 
 Varmistin asian vielä navigoimalla uudelleen admin-console -sivulle. Tällä kertaa pääsy sinne oli kuitenkin estetty ja tuloksena oli _403 Forbidden_
 
