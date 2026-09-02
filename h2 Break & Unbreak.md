@@ -14,9 +14,29 @@ ________________________________________________________________________________
 
 [OWASP: OWASP Top 10: A01 Broken Access Control](https://owasp.org/Top10/A01_2021-Broken_Access_Control/)
 
+- Broken Access Control on tilanne, jossa hyökkääjien on mahdollista saada pääsy tietoon tai toimintoihin joihin ei pitäisi olla oikeutta.
+- Yleisiä haavoittuvuksia ovat esimerkiksi:
+  - admin oikeuksiin käsiksi pääsy
+  - URL-osoitteiden manipulointi
+  - autentikoiduille sivuille pääseminen ilman riittävää autentikointia
+- Käyttöoikeuksia voi muokata HTML puolella, joten niiden tarkastaminen palvelinpuolella on turvallisempaa
+- deny by default on turvallinen oletus. Tällöin pääsy on kielletty, jollei tosin todisteta.
+
 [Karvinen 2023: Find Hidden Web Directories - Fuzz URLs with ffuf](https://terokarvinen.com/2023/fuzz-urls-find-hidden-directories/)
 
+- Palvelimilla voi olla piilotettuja sivuja, joihin ei ole selkeitä näkyviä viittauksia. Niitä voidaan kuitenkin etsiä fuzzaamalla
+- ffuf on nopea verkkofuzzeri joka tarvitsee vain sanalistan toimiakseen
+- Tuloksia voidaan suodattaa erilaisin parametrein, kuten koon, rivimäärän tai sanamäärän mukaan.
+- _FUZZ_ toimii paikkamerkkinä, jonka ffuf korvaa hakusanalla
+
 [PortSwigger: Access control vulnerabilities and privilege escalation](https://portswigger.net/web-security/access-control)
+
+- Access Control määrittää mitä käyttäjä saa tehdä ja mitä ei
+- Authentication varmistaa henkilöllisyyden
+-  Priviledge Escalationit tarkoittavat tilannetta, jossa käyttäjä pääsee käsiksi oikeuksiin joita tälle ei kuuluisi
+-  Käyttöoikeuksia voidaan kiertää esimerkiksi URL:n ja HTTP pyyntöjen avulla
+-  Käyttöoikeudet tulisi tarkistaa palvelimelta, sillä käyttäjä voi HTML:n kautta kiertää niitä
+-  Käyttöoikeudet tulisi aina testata kattavasti
 
 [Karvinen 2006: Report Writing (in Finnish)](https://terokarvinen.com/2006/raportin-kirjoittaminen-4/)
 
