@@ -17,7 +17,7 @@ Latasin [Karvisen kurssisivulta](https://terokarvinen.com/application-hacking/) 
 
 Ajamalla tiedoston ```./passtr``` ohjelma kysyi salasanaa ja tulosti "Sorry, no bonus." väärällä salasanalla. 
 
-Tarkastelin aluksi tiedostoa: ```file passtr``` mutta en saanut tästä mitään mikä olisi suoraan antanut hyödyllistä tietoa. 
+Tarkastelin aluksi tiedostoa: ```file passtr```, joka kertoi tiedoston olevan 64-bittinen ELF-sovellus mutta ei paljastanut vielä sisältöä.
 
 <br> <img width="966" height="108" alt="FILE PASSTR" src="https://github.com/user-attachments/assets/980db5e1-0140-4c67-91c7-40df51015932" /> <br>
 
@@ -66,7 +66,7 @@ Lähdin lähestymään tehtävää samanlailla kuin edellistä. Ensin kokeilin `
 
 <br> <img width="901" height="300" alt="UPX FIND" src="https://github.com/user-attachments/assets/a9e61ce4-6384-4961-b376-4a1bc6f11a49" /> <br>
 
-Tutustuin [UPX-pakkauksiin](https://linux.die.net/man/1/upx) ja löysin, että komennolla ```upx .d <tiedosto>``` saisi purettua UPX-pakatun tiedoston, joten lähdin kokeilemaan tätä.
+Tutustuin [UPX-pakkauksiin](https://linux.die.net/man/1/upx) ja löysin, että komennolla ```upx -d <tiedosto>``` saisi purettua UPX-pakatun tiedoston, joten lähdin kokeilemaan tätä.
 
 <br> <img width="837" height="212" alt="UNPACKED" src="https://github.com/user-attachments/assets/0af78430-8f1f-4b26-aa24-1b5cef12dcc7" /> <br>
 
@@ -88,4 +88,4 @@ upx(1) - Linux man page. Die.net. Luettavissa: https://linux.die.net/man/1/upx. 
 
 Syed, I. XOR Obfuscation. 2026. Luettavissa: https://iftekhar.rocks/blog/posts/XOR-Obfuscation/. Luettu 7.9.2026.
 
-Stack Overflow. Luettavissa: https://stackoverflow.com/questions/69927341/hide-string-in-binary-at-compile-timehttps://stackoverflow.com/questions/69927341/hide-string-in-binary-at-compile-time. Luettu 7.9.2026.
+Stack Overflow. Luettavissa: https://stackoverflow.com/questions/69927341/hide-string-in-binary-at-compile-time. Luettu 7.9.2026.
