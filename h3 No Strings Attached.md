@@ -14,24 +14,35 @@ ________________________________________________________________________________
 
 Latasin [Karvisen kurssisivulta](https://terokarvinen.com/application-hacking/) tehtävänannon kansion ja purin sen. 
 
-Tarkastelin aluksi tiedostoa: ```file passtr```. 
+
+Ajamalla tiedoston ```./passtr``` ohjelma kysyi salasanaa ja tulosti "Sorry, no bonus." väärällä salasanalla. 
+
+Tarkastelin aluksi tiedostoa: ```file passtr``` mutta en saanut tästä mitään mikä olisi suoraan antanut hyödyllistä tietoa. 
 
 <br> <img width="966" height="108" alt="FILE PASSTR" src="https://github.com/user-attachments/assets/980db5e1-0140-4c67-91c7-40df51015932" /> <br>
 
-Flag löytyi yllättävänkin helposti. Komennolla ```strings passtr``` tulostui kaikki ohjelmat merkkijonot, jota tutkimalla löytyi 
+Oikea salasana ja lippui löytyivätkin yllättävän helposti. Tehtävänannon komennolla ```strings passtr``` tulostui kaikki ohjelman merkkijonot, jota tutkimalla löytyi niin oikea salasana kuin lippukin. 
 
-<img width="794" height="424" alt="FLAG" src="https://github.com/user-attachments/assets/e2cae3bf-6e9f-4edc-b0c9-4228e7f29dd8" />
+<br> <img width="794" height="424" alt="FLAG" src="https://github.com/user-attachments/assets/e2cae3bf-6e9f-4edc-b0c9-4228e7f29dd8" /> <br>
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
 ### b) Make a new version of the passtr.c program where the password doesn't appear directly as-is in the binary. Demonstrate with a test that the password doesn't appear. (Obfuscation is sufficient.)
 
-Tutustuin obfuskointiin [FreeCodeCampin artikkelin](https://www.freecodecamp.org/news/make-your-code-secure-with-obfuscation/) pohjalta. Obfuskoinnissa tarkoituksena on "hämärtää" koodia niin, että vaikka tietokone pystyy edelleen käsittelemään sitä, ihminen tai yksinkertainen analyysityökalu ei kykene lukemaan sitä helposti. Edellisessä tehtävässä hakkerin salasana paljastui yksinkertaisena merkkijonona mutta obfuskoinnin avulla sama salasana tulostuisi jonain aivan muuna.
+Tutustuin obfuskointiin [FreeCodeCampin artikkelin](https://www.freecodecamp.org/news/make-your-code-secure-with-obfuscation/) pohjalta. Obfuskoinnissa tarkoituksena on "hämärtää" koodia niin, että vaikka tietokone pystyy edelleen käsittelemään sitä, ihminen tai yksinkertainen analyysityökalu ei kykene lukemaan sitä helposti. Edellisessä tehtävässä hakkerin salasana paljastui yksinkertaisena merkkijonona mutta obfuskoinnin avulla sama salasana olisi edes hieman paremmin jemmassa.
 
-Loin itselleni varmuuskopiot alkuperäisestä _passtr_ ohjelmasta ja lähdekoodista komennoilla ```cp passtr ~/<Hakemisto>/COPYpasstr``` ja ```cp passtr.c ~/<Hakemisto>/COPYpasstr.c```. Sen jälkeen lähdin tutkimaan lähdekoodia.
+Loin itselleni varmuuskopiot alkuperäisestä _passtr_ ohjelmasta ja lähdekoodista komennoilla ```cp passtr ~/<Hakemisto>/COPYpasstr``` ja ```cp passtr.c ~/<Hakemisto>/COPYpasstr.c```. 
 
+Sen jälkeen lähdin tutkimaan lähdekoodia. Tulkitsin koodia niin, että ohjelma vertaa käyttäjän syöttämää salasanaa oikeaan salasanaan, joka on tallennettu selkokielisenä merkkijonona lähdekoodiin. Tällöin ```strings``` pystyy lukemaan ja tulostamaan sen suoriltaan.  
 
+Perehdyin [XOR-obfuskointiin](https://iftekhar.rocks/blog/posts/XOR-Obfuscation/) mikä meni hieman yli oman ymmärryksen tässä kohtaa mutta käsitin, että XORilla jokainen merkki muutetaan toiseen tavuarvoon avainta käyttäen. Tällöin jokainen salasanan merkki voidaan salata mutta ohjelma pystyy edelleen lukemaan koodin:
+
+    's' = 0x73
+    key = 0x7b
+    0x73 XOR 0x7b = 0x08
+
+XOR vaikutti kuitenkin itselleni liian monimutkaiselta tavalta lähteä sotkemaan lähdekoodia. Löysin kuitenkin [Stack Overflowsta](https://stackoverflow.com/questions/69927341/hide-string-in-binary-at-compile-time) helpomman oloisen lähestymistavan: merkkijonon rikkomisen listaksi. Tällöin ohjelma lukee salasanan merkki kerrallaan taulukosta eikä selkokielisenä, yhtenäisenä merkkijonona. Vertailussa käyttäjän syötettä verrataan kyseiseen taulukkoon.
 
 <br> <img width="927" height="449" alt="FIXED SOURCECODE" src="https://github.com/user-attachments/assets/605064b7-27b2-4de8-9434-a8b64e7e2bf2" /> <br>
 
@@ -41,7 +52,7 @@ Verrattiin tulostuksia:
     strings COPYpasstr | grep "sala-hakkeri-321"
     strings passtr | grep "sala-hakkeri-321"
 
-Alkuperäinen ohjelma palautti salasanan merkkijonona kun taas muokattu ohjelma ei tulostanut mitään. 
+Alkuperäinen ohjelma palautti salasanan merkkijonona kun taas muokattu ohjelma ei tulostanut mitään, joten salasanan esitystapa oli onnistuneesti obfuskoitu.
 
 <br> <img width="882" height="100" alt="FIXED PROOF" src="https://github.com/user-attachments/assets/fc5a576a-32f3-4357-b9ca-cfdc295d9a64" /> <br>
 
@@ -55,7 +66,7 @@ Lähdin lähestymään tehtävää samanlailla kuin edellistä. Ensin kokeilin `
 
 <br> <img width="901" height="300" alt="UPX FIND" src="https://github.com/user-attachments/assets/a9e61ce4-6384-4961-b376-4a1bc6f11a49" /> <br>
 
-Tutustuin UPX-pakkauksiin ja löysin, että komennolla ```upx .d <tiedosto>``` saisi purettua UPX-pakatun tiedoston, joten lähdin kokeilemaan tätä.
+Tutustuin [UPX-pakkauksiin](https://linux.die.net/man/1/upx) ja löysin, että komennolla ```upx .d <tiedosto>``` saisi purettua UPX-pakatun tiedoston, joten lähdin kokeilemaan tätä.
 
 <br> <img width="837" height="212" alt="UNPACKED" src="https://github.com/user-attachments/assets/0af78430-8f1f-4b26-aa24-1b5cef12dcc7" /> <br>
 
@@ -72,3 +83,9 @@ ________________________________________________________________________________
 Karvinen, T. Sovellusten hakkerointi kurssimateriaali. Luettavissa: https://terokarvinen.com/application-hacking/. Luettu 7.9.2026.
 
 Kovacevic, A. What is Code Obfuscation? How to Disguise Your Code to Make it More Secure. FreeCodeCamp. 2020. Luettavissa: https://www.freecodecamp.org/news/make-your-code-secure-with-obfuscation/. Luettu 7.9.2026.
+
+upx(1) - Linux man page. Die.net. Luettavissa: https://linux.die.net/man/1/upx. Luettu 7.9.2026.
+
+Syed, I. XOR Obfuscation. 2026. Luettavissa: https://iftekhar.rocks/blog/posts/XOR-Obfuscation/. Luettu 7.9.2026.
+
+Stack Overflow. Luettavissa: https://stackoverflow.com/questions/69927341/hide-string-in-binary-at-compile-timehttps://stackoverflow.com/questions/69927341/hide-string-in-binary-at-compile-time. Luettu 7.9.2026.
