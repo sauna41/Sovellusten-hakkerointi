@@ -70,7 +70,7 @@ Tutustuin [UPX-pakkauksiin](https://linux.die.net/man/1/upx) ja löysin, että k
 
 <br> <img width="837" height="212" alt="UNPACKED" src="https://github.com/user-attachments/assets/0af78430-8f1f-4b26-aa24-1b5cef12dcc7" /> <br>
 
-Tämän jälkeen yritin uudelleen strings -komentoa. Tällä kertaa merkkijonot olivat näkyvissä, jolloin salasana & lippu saatiin tietoon.
+Purkamisen jälkeen kokeilin ```strings``` -komentoa uudelleen. Tällä kertaa merkkijonot olivat selkeästi luettavissa, jolloin salasana & lippu saatiin tietoon.
 
 
 <br> <img width="766" height="86" alt="FLAG FOUND" src="https://github.com/user-attachments/assets/0bb31d21-20e8-448c-8f52-02f85f935003" /> <br>
