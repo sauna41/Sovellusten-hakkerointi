@@ -46,7 +46,6 @@ Klikkaamalla saatiin auki CodeBrowser ja Ghidran ilmoitus: "_packd has not been 
 Aloitin tutkimaan analyysiä etsimällä _Main_ -lohkon. _Symbol Tree_ valikosta sitä ei löytynyt suoraan, joten kokeilin etsiä tiedettyä merkkijonoa _Search_ -toiminnolla. 
 
 <br>
-<br>
 
 <img width="1130" height="425" alt="image" src="https://github.com/user-attachments/assets/972f79e3-fa26-42f3-900a-47dfb5644891" />
 
