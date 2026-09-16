@@ -172,14 +172,23 @@ Ratkaisua oli helppo kokeilla selvitetyllä syötteellä: ````./crackme01.64 pas
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-e) Nora crackme01e. Solve the binary.
+### e) Nora crackme01e. Solve the binary.
 
+Jälleen Ghidraan auki ja tulkitsemaan. Pseudokoodi oli hyvin samankaltainen kuin aiemmassa tehtävässä mutta ``strcmp()`` sijaan funktiona toimi ``strncmp()``. Tämä vertaili merkkijonon pituutta, joten salasanassa tuli olla täsmälleen 10 merkkiä.
+
+<br>
+<img width="511" height="591" alt="CRACKME01E BINARY" src="https://github.com/user-attachments/assets/2ec30c03-e20c-42c0-89a7-fc9c4721db5d" />
+
+Ajamalla '_slm!paas.k_' päästiin exit-status 0 pisteeseen. 
+
+<br>
+<img width="456" height="82" alt="CRACKME01E SOLVE" src="https://github.com/user-attachments/assets/31b34070-6b5a-4be9-8841-cd8939dd7c32" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### f) Nora crackme02. Name the main program's variables from the reverse-engineered binary and explain the program's operation. Solve the binary.
 
-Jälleen Ghidraan auki ja tulkitsemaan. Tällä kertaa merkkijonoja eri vertailtu strcmp() -funktiolla, vaan merkkejä vertailtiin silmukan sisällä. 
+Vielä kerran Ghidraan ja tutkimaan. Tällä kertaa merkkijonoja eri vertailtu strcmp() -funktiolla, vaan merkkejä vertailtiin silmukan sisällä. 
 
 <br>
 <br>
