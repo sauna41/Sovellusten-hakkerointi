@@ -182,6 +182,12 @@ ________________________________________________________________________________
 
 Jälleen Ghidraan auki ja tulkitsemaan. Tällä kertaa merkkijonoja eri vertailtu strcmp() -funktiolla, vaan merkkejä vertailtiin silmukan sisällä. 
 
+<br>
+<br>
+<img width="509" height="690" alt="CRACKME02 BINARY" src="https://github.com/user-attachments/assets/e2e66839-25b2-495d-bbd8-9b5395fe5b01" />
+<br>
+<br>
+
 1. Ohjelma vaatii yhden argumentin
 2. Asetetaan pcVar5 = "password1     // Oikea salasana merkkijono
 3. cVar2 = vertailun ensimmäinen merkki 'p'
@@ -204,7 +210,7 @@ Jälleen Ghidraan auki ja tulkitsemaan. Tällä kertaa merkkijonoja eri vertailt
             cVar2 = *pcVar5;        // siirrytään seuraavaan odotettuun merkkiin
             pcVar4 = pcVar4 + 1;        // siirrytään vertailemaan seuraavaa merkkiä käyttäjän syötteestä
     
-        } while (cVar2 != '\0');        // tarkastetaan, onko odotettu salasana päättynyty
+        } while (cVar2 != '\0');        // tarkastetaan, onko odotettu salasana päättynyt
 
         // PÄHKINÄNKUORESSA: odotettu oikea merkki -1 = käyttäjän merkki
 
