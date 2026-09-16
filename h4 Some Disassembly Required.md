@@ -214,7 +214,7 @@ Vielä kerran Ghidraan ja tutkimaan. Tällä kertaa merkkijonoja eri vertailtu s
 
         // PÄHKINÄNKUORESSA: odotettu oikea merkki -1 = käyttäjän merkki
 
-Eli "salasanan" ollessa password1, on odotettu käyttäjän syöte jokaisen merkin kohdalla -1 ASCII = **o`rrvnqc0**
+Eli "salasanan" ollessa password1, on odotettu käyttäjän syöte jokaisen merkin kohdalla -1 ASCII = **o`rrvnqc0**    [ASCII Table](https://www.ascii-code.com/)
 
 Kokeiltiin yllä mainittua ja törmättiin backstick ongelmaan. 
 
@@ -244,6 +244,8 @@ Video esittelee 2022 PicoCTF reverse-engineering tehtävää "Bloat". Tarkoitus 
 - Vertailuarvo löydettiin hexadesimaalilukuna ja se muutettiin desimaaliluvuksi
 - Oikea desimaali tulostaa lipun
 
+<br>
+
 Tein tiivistelmän tämän raportin viimeisenä osana. Videolla käytettiin samoja työkaluja ja toimintatapoja kuin itse käytin aiempien osuuksien suorittamiseen. Binääristä etsittiin tunnettu merkkijono, josta päästiin tutkimaan Decompilerin pseudokoodia. Pseudokoodista voidaan päätellä miten ohjelma saattaisi toimia, jolloin voidaan lähteä kokeilemaan ratkaisuja alkuperäisellä binäärillä muokkaamatta mitään. Videosta jäi erityisesti mieleen se, miten paljon eri komentorivityökaluja kokeiltiin ennen Ghidra osuuden aloittamista. Kyseiset työkalut eivät olleet vielä tässä kohtaa itselleni tuttuja ``strings`` -työkalua lukuunottamatta mutta näinhän näitä oppii.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -255,6 +257,8 @@ Karvinen, T. Sovellusten hakkerointi kurssimateriaali. 2026. Luettavissa: https:
 Hammond, J. GHIDRA for Reverse Engineering (PicoCTF 2022 #42 'bbbloat'). 2022. Saatavilla: https://www.youtube.com/watch?v=oTD_ki86c9I. Katsottu 16.9.2026.
 
 Ghidra Installation Guide. Ghidra Docs. Luettavissa: https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html. Luettu 16.9.2026.
+
+NoraCodes crackmes. Github. Saatavilla: https://github.com/NoraCodes/crackmes. Ladattu 16.9.2026.
 
 ChatGPT. Prompt: "Selitä koodi rivi riviltä." Saatavilla: chatgpt.com. Käytetty 16.9.2026.
 
