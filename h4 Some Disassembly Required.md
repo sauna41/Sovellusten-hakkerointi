@@ -258,7 +258,7 @@ Hammond, J. GHIDRA for Reverse Engineering (PicoCTF 2022 #42 'bbbloat'). 2022. S
 
 Ghidra Installation Guide. Ghidra Docs. Luettavissa: https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html. Luettu 16.9.2026.
 
-NoraCodes crackmes. Github. Saatavilla: https://github.com/NoraCodes/crackmes. Ladattu 16.9.2026.
+NoraCodes _crackmes_. Github. Saatavilla: https://github.com/NoraCodes/crackmes. Ladattu 16.9.2026.
 
 ChatGPT. Prompt: "Selitä koodi rivi riviltä." Saatavilla: chatgpt.com. Käytetty 16.9.2026.
 
