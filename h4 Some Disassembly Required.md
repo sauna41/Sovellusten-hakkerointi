@@ -262,5 +262,7 @@ NoraCodes crackmes. Github. Saatavilla: https://github.com/NoraCodes/crackmes. L
 
 ChatGPT. Prompt: "Selitä koodi rivi riviltä." Saatavilla: chatgpt.com. Käytetty 16.9.2026.
 
+ASCII Table. ASCII code. Luettavissa: https://www.ascii-code.com/. Luettu 16.9.2026.
+
 
 3.16 Options for Linking. GNU.org. Luettavissa: https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html. Luettu 16.9.2026.
