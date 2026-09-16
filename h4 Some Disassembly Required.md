@@ -14,7 +14,7 @@ ________________________________________________________________________________
 
 ### x) Read/watch/listen and summarize
 
-    Hammond 2022: Ghidra for Reverse Engineering (PicoCTF 2022 #42 'bbbloat') (Video, about 20 min)
+Hammond 2022: Ghidra for Reverse Engineering (PicoCTF 2022 #42 'bbbloat') (Video, about 20 min)
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -199,7 +199,7 @@ Vielä kerran Ghidraan ja tutkimaan. Tällä kertaa merkkijonoja eri vertailtu s
 2. Asetetaan pcVar5 = "password1     // vertailumerkkijono
 3. cVar2 = vertailun ensimmäinen merkki 'p'
 4. pcVar4 = käyttäjän syötteen ensimmäinen merkki
-5. Silmukka, jossa on itse kikkailu tapahtuu:
+5. Silmukka, jossa on itse kikkailu tapahtuu: (_koodin tulkintaan käytetty ChatGPT tekoälyä promptilla "Selitä koodi rivi riviltä"_)
 
         do {        // aloittaa silmukan
             pcVar5 = pcVar5 + 1;     // osoittaa merkkijonon toiseen indeksiin 'a'
@@ -242,7 +242,11 @@ ________________________________________________________________________________
 
 Karvinen, T. Sovellusten hakkerointi kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/application-hacking/#homework. Luettu 16.9.2026.
 
+Hammond, J. GHIDRA for Reverse Engineering (PicoCTF 2022 #42 'bbbloat'). Saatavilla: https://www.youtube.com/watch?v=oTD_ki86c9I. Katsottu 16.9.2026.
+
 Ghidra Installation Guide. Ghidra Docs. Luettavissa: https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html. Luettu 16.9.2026.
+
+ChatGPT. Prompt: "Selitä koodi rivi riviltä." Saatavilla: chatgpt.com. Käytetty 16.9.2026.
 
 
 3.16 Options for Linking. GNU.org. Luettavissa: https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html. Luettu 16.9.2026.
