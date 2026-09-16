@@ -84,8 +84,50 @@ ________________________________________________________________________________
 
 ### c) If backwards. Modify the passtr program's binary (without the original source code) so that it accepts all passwords except the correct one. Demonstrate with tests that the program works.
 
+### Analyysi
+
+Alkuun samat askeleet kuin aiemmin. Ghidraan uusi projekti, johon importattiin _passtr_ ohjelma. Main-lohkon paikantaminen sujui tällä kertaa helpommin ja koodi saatiin tutkittavaksi:
 
 
+<br>
+<br>
+<img width="685" height="402" alt="image" src="https://github.com/user-attachments/assets/c20bf1c9-dbb5-4fb2-8549-08e04d8a22b8" />
+<br>
+<br>
+
+Tarkoitukseni oli siis muuttaa koodi niin, että kaikki paitsi oikea salasana tulostaisi lipun. Ajattelin aluksi, että voisin yksinkertaisesti vaihtaa ehdon muotoon ````if (iVarl != 0) //hyväksy kaikki väärät```` mutta tajusin, että varsinainen muutos tulisi varmaan tehdä assemblyssä. Tämä lähti liikkeelle etsimällä binääristä kohta, jossa vertailu tapahtuu. Oikealle riville pääsi helposti klikkaamalla koodista haluttua kohtaa. 
+
+<br>
+<br>
+<img width="789" height="227" alt="image" src="https://github.com/user-attachments/assets/19e3073b-ab66-4c23-9b5a-040eaf665c26" />
+<br>
+<br>
+
+Assemblyssä näkyy CALL (kutsuu strcmp-funktiota), jonka jälkeen TEST (vertaillaan salasanoja) ja JNZ (Jump if Not Zero) hyppää kohtaan "_Sorry, no bonus_", jos tulos ei ole nolla. Lähdin siis muuttamaan JNZ --> JZ (hypätään nollaan, eli lipun tulostukseen).
+
+#### Binäärin patchaaminen
+
+Right-klikkaamalla 001011a3 75 11 JNZ --> Patch Instruction päästiin muokkaamaan JNZ --> JZ. 
+
+<br>
+<br>
+<img width="567" height="108" alt="image" src="https://github.com/user-attachments/assets/4dc9654e-1634-4db1-ae9b-7329fae6700c" />
+<br>
+<br>
+
+#### Ohjelman export ja todennus
+
+Binäärin logiikka oli nyt muokattu ja oli aika exportata se testiajoon. Export tapahtui _File_ --> _Export File_. Tiedostomuotona pidin alkuperäisen. Kun ohjelma oli exportattu, oli aika kokeilla ajaa se "väärällä" että "oikealla" salasanalla:
+
+<br>
+<br>
+<img width="724" height="122" alt="image" src="https://github.com/user-attachments/assets/820af198-aa96-4c43-a6ac-983846bda7c9" />
+<br>
+<br>
+
+<img width="508" height="121" alt="image" src="https://github.com/user-attachments/assets/287dc757-00b3-4915-b05e-7ab35f97b159" />
+<br>
+<br>
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
