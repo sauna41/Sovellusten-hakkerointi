@@ -1,0 +1,112 @@
+_Kurssi: Sovellusten hakkerointi ja haavoittuvuudet ICI012AS3A-3004_
+
+_Tekijä: Henri Äikäs_
+
+_Alusta: Windows 11 / Kali Linux (VirtualBox)_
+
+_Päivämäärä: 13.9.2026_
+
+_Tämä raportti on osa Haaga-Helian Sovellusten hakkerointi ja haavoittuvuudet -kurssia syksyllä 2026. Tehtävänanto on h4 Some Disssembly Required. Opettajana toimi Tero Karvinen_
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+### x) Read/watch/listen and summarize
+
+    Hammond 2022: Ghidra for Reverse Engineering (PicoCTF 2022 #42 'bbbloat') (Video, about 20 min)
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+### a) Install Ghidra.
+
+Ghidran asentamista varten tarvittiin lisäksi Java Development Kit (JDK), koska Ghidra tarvitsee Java-ympäristö toimiakseen. Asensin Kaliin OpenJDK 25 ja tarkistin asennuksen ```java --version``` ja ````javac --version```` -komennoilla. Molemmat versiot olivat mallia 25.0.4. [Ghidra Docs](https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html)
+
+Kun Java-ympäristö oli kunnossa, Ghidran asennus tapahtui ```sudo apt install ghidra``` komennolla.
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+
+### b) rever-C. Reverse engineer the packd binary to C language with Ghidra. Find the main program. Give variables descriptive names. Explain the program's operation. Solve the task from the binary, without the original source code.
+#### Uusi projekti
+
+Avattiin Ghridra ja alettiin käsittelemään aiemmista tehtävistä tuttua _packd_ sisältöä. 
+
+Ghidrasta luotiin uusi projekti: _File_ --> _New Project_ --> _Non-Shared Project_ --> _Hakemisto & nimi_. Projektin sisälle importattiin _packd_ -tiedosto.
+
+<img width="329" height="142" alt="PACKD PROJEKTI" src="https://github.com/user-attachments/assets/302ce771-22a1-4337-9300-6b868ca688ca" />
+
+Klikkaamalla saatiin auki CodeBrowser ja Ghidran ilmoitus: "_packd has not been analyzed. Would you like to analyze it now?_" johon vastattiin kyllä. Analyysi-ikkunasta en muuttanut asetuksia vaan suoritin analyysin vakioasetuksilla. 
+
+<img width="841" height="687" alt="ANALYZE WINDOW" src="https://github.com/user-attachments/assets/534ba90f-66ae-4a82-85de-9f1db093002c" />
+
+
+#### Main-lohkon etsintä
+
+Aloitin tutkimaan analyysiä etsimällä _Main_ -lohkon. _Symbol Tree_ valikosta sitä ei löytynyt suoraan, joten kokeilin etsiä tiedettyä merkkijonoa _Search_ -toiminnolla. 
+
+<br>
+<br>
+
+<img width="1130" height="425" alt="image" src="https://github.com/user-attachments/assets/972f79e3-fa26-42f3-900a-47dfb5644891" />
+
+<br>
+<br>
+
+Tällä löytyi "_What's the password?_" merkkijonon sijainti, jonka tiesin olevan main-lohkon sisällä. Aikani ihmeteltyä erilaisia _FUN_ funktioita, tajusin, että käsittelyssä oleva paketti on vielä .upx pakattu. Tämä lisäsi binääriin UPX-pakkaukseen liittyvää sisältöä, joka monimutkaisti varsinaisen ohjelmalogiikan analysointia jonka johdosta binääristä tein binääristä puretun version. Analyysi kohdistui silti tehtävässä annettuun packd-binääriin eikä lähdekoodiin.
+
+Loin uuden projektin, johon lisäsin puretun packd -tiedoston. Samoilla askelilla löytyi main-lohko ja sen löytämä pseudokoodi helposti: 
+
+<img width="274" height="336" alt="image" src="https://github.com/user-attachments/assets/0ebb1614-a636-499e-9ec9-2ce1d26e1f41" />
+
+#### **Ohjelman toiminta** pähkinänkuoressa
+1. Kysytään käyttäjältä salasanaa tulostamalla _"What's the password?"_
+2. ````scanf()```` lukee käyttäjän syötteen muuttujaan local_28
+3. ````strcomp()```` vertaa käyttäjän syötettä oikeaan salasanaan "_piilos-AnAnAs_"
+4. ````strcomp()```` palauttaa 0 jos merkkijonot täsmäävät
+5. Jos tulos on 0, ohjelma ilmoittaa oikeasta salasanasta ja tulostaa lipun
+6. Muissa tapauksissa tulostetaan "_Sorry, no bonus_" 
+
+<br>
+<br>
+
+#### Muuttujanimet kuntoon
+
+Lähdin harjoittamaan **reverse engineringiä** nimeämällä automaattiset muuttujat helpommin ymmärrettäväksi:
+- iVarl --> int passwordComparison;
+- char local_28 --> char password
+
+#### Salasana
+
+Oikea salasana esiintyy strcomp()-funktion parametrina, se voidaan ratkaista ilman lähdekoodia. Se olisi helppo testata antamalla se syötteeksi, mikä palauttaisi lipun ja täten todistaisi, että tehtävän voi ratkaista ilman alkuperäistä lähdekoodia pelkän reverse engineeratun binäärin avulla. 
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+### c) If backwards. Modify the passtr program's binary (without the original source code) so that it accepts all passwords except the correct one. Demonstrate with tests that the program works.
+
+
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+
+### d) Nora CrackMe: Compile to binaries Tindall 2023: NoraCodes / crackmes. Read README.md: don't look at the source code unless you need training wheels. In these tasks, binaries are reverse engineered. Binaries are not modified, because otherwise the solution to every task would be to change the return value to "return 0".
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+### e) Nora crackme01. Solve the binary.
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+### f) Nora crackme01e. Solve the binary.
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+### g) Nora crackme02. Name the main program's variables from the reverse-engineered binary and explain the program's operation. Solve the binary.
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+### Lähteet:
+
+Karvinen, T.
+
+Ghidra Installation Guide. Ghidra Docs. Luettavissa: https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html. Luettu 13.9.2026.
