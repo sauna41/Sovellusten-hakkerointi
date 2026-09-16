@@ -11,13 +11,6 @@ _Tämä raportti on osa Haaga-Helian Sovellusten hakkerointi ja haavoittuvuudet 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
-
-### x) Read/watch/listen and summarize
-
-Hammond 2022: Ghidra for Reverse Engineering (PicoCTF 2022 #42 'bbbloat') (Video, about 20 min)
-
-________________________________________________________________________________________________________________________________________________________________________________________
-
 ### a) Install Ghidra.
 
 Ghidran asentamista varten tarvittiin lisäksi Java Development Kit (JDK), koska Java-pohjainen Ghidra tarvitsee Java ympäristön toimiakseen. Asensin Kaliin OpenJDK 25 ja tarkistin asennuksen ```java --version``` ja ````javac --version```` -komennoilla. Molemmat versiot olivat mallia 25.0.4. [Ghidra Docs](https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html)
@@ -238,11 +231,28 @@ Tämä oli helppo ratkaista laittamalla salasana hipsujen sisään.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
+
+### x) Read/watch/listen and summarize
+
+[Hammond 2022: Ghidra for Reverse Engineering (PicoCTF 2022 #42 'bbbloat')](https://www.youtube.com/watch?v=oTD_ki86c9I)
+
+Video esittelee 2022 PicoCTF reverse-engineering tehtävää "Bloat". Tarkoitus on selvittää ohjelman toiminta ilman lähdekoodia binäärin avulla ja löytää oikea syöte, jolla lippu saadaan kaapattua.
+- Ensin selvitetään perustiedot: file -komento, 64-bit ELF, PIE.
+- Ennen Ghidraa kokeiltiin komentorivityökaluja: ltrace, strace, objdump, strings. Näillä saadaan jonkin sortin käsitys siitä, mitä ohjelma tekee.
+- Ghidraan luodaan uusi projekti, importataan binääri, suoritetaan analyysi ja etsitään "_What is my favorite number_" merkkijono.
+- Tutkitaan Decompiler pseudokoodia: tulostetaan kysymys, luetaan syöte, verrataan syötettä arvoon ja tuloksesta riippuen jatketaan tai lopetetaan.
+- Vertailuarvo löydettiin hexadesimaalilukuna ja se muutettiin desimaaliluvuksi
+- Oikea desimaali tulostaa lipun
+
+Tein tiivistelmän tämän raportin viimeisenä osana. Videolla käytettiin samoja työkaluja ja toimintatapoja kuin itse käytin aiempien osuuksien suorittamiseen. Binääristä etsittiin tunnettu merkkijono, josta päästiin tutkimaan Decompilerin pseudokoodia. Pseudokoodista voidaan päätellä miten ohjelma saattaisi toimia, jolloin voidaan lähteä kokeilemaan ratkaisuja alkuperäisellä binäärillä muokkaamatta mitään. Videosta jäi erityisesti mieleen se, miten paljon eri komentorivityökaluja kokeiltiin ennen Ghidra osuuden aloittamista. Kyseiset työkalut eivät olleet vielä tässä kohtaa itselleni tuttuja ``strings`` -työkalua lukuunottamatta mutta näinhän näitä oppii.
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
 ### Lähteet:
 
 Karvinen, T. Sovellusten hakkerointi kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/application-hacking/#homework. Luettu 16.9.2026.
 
-Hammond, J. GHIDRA for Reverse Engineering (PicoCTF 2022 #42 'bbbloat'). Saatavilla: https://www.youtube.com/watch?v=oTD_ki86c9I. Katsottu 16.9.2026.
+Hammond, J. GHIDRA for Reverse Engineering (PicoCTF 2022 #42 'bbbloat'). 2022. Saatavilla: https://www.youtube.com/watch?v=oTD_ki86c9I. Katsottu 16.9.2026.
 
 Ghidra Installation Guide. Ghidra Docs. Luettavissa: https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html. Luettu 16.9.2026.
 
