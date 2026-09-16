@@ -219,7 +219,6 @@ Eli "salasanan" ollessa password1, on odotettu käyttäjän syöte jokaisen merk
 Kokeiltiin yllä mainittua ja törmättiin backstick ongelmaan. 
 
 <br>
-<br>
 <img width="440" height="72" alt="bquote" src="https://github.com/user-attachments/assets/40e116d9-e107-43e2-8c8c-032359a41f3d" />
 <br>
 <br>
@@ -227,9 +226,7 @@ Kokeiltiin yllä mainittua ja törmättiin backstick ongelmaan.
 Tämä oli helppo ratkaista laittamalla salasana hipsujen sisään. 
 
 <br>
-<br>
 <img width="420" height="73" alt="CRACKME02 SOLVE" src="https://github.com/user-attachments/assets/cf11f4ee-6010-49d5-87cd-cc4784e462b6" />
-<br>
 <br>
 
 ________________________________________________________________________________________________________________________________________________________________________________________
