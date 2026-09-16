@@ -62,8 +62,8 @@ Loin uuden projektin, johon lisäsin puretun packd -tiedoston. Samoilla askelill
 #### **Ohjelman toiminta** pähkinänkuoressa
 1. Kysytään käyttäjältä salasanaa tulostamalla _"What's the password?"_
 2. ````scanf()```` lukee käyttäjän syötteen muuttujaan local_28
-3. ````strcomp()```` vertaa käyttäjän syötettä oikeaan salasanaan "_piilos-AnAnAs_"
-4. ````strcomp()```` palauttaa 0 jos merkkijonot täsmäävät
+3. ````strcmp()```` vertaa käyttäjän syötettä oikeaan salasanaan "_piilos-AnAnAs_"
+4. ````strcmp()```` palauttaa 0 jos merkkijonot täsmäävät
 5. Jos tulos on 0, ohjelma ilmoittaa oikeasta salasanasta ja tulostaa lipun
 6. Muissa tapauksissa tulostetaan "_Sorry, no bonus_" 
 
@@ -84,7 +84,7 @@ ________________________________________________________________________________
 
 ### c) If backwards. Modify the passtr program's binary (without the original source code) so that it accepts all passwords except the correct one. Demonstrate with tests that the program works.
 
-### Analyysi
+#### Analyysi
 
 Alkuun samat askeleet kuin aiemmin. Ghidraan uusi projekti, johon importattiin _passtr_ ohjelma. Main-lohkon paikantaminen sujui tällä kertaa helpommin ja koodi saatiin tutkittavaksi:
 
@@ -133,22 +133,106 @@ ________________________________________________________________________________
 
 ### d) Nora CrackMe: Compile to binaries Tindall 2023: NoraCodes / crackmes. Read README.md: don't look at the source code unless you need training wheels. In these tasks, binaries are reverse engineered. Binaries are not modified, because otherwise the solution to every task would be to change the return value to "return 0".
 
+Latasin CracMe haasteet Kaliin komennolla ````git clone https://github.com/NoraCodes/crackmes.git````. README-tiedosta löytyi lisäohjeistusta: komennolla ````make <name>```` saatiin käännettyä crackme01 & crackme02 binääri. 
+
+Sain kuitenkin virheilmoituksen, että _lcrypt_ puuttuu. Perehdyin aiheeseen ja käsitykseni mukaan GCC kääntää koodin mutta tarvitsee linkkerin yhdistämään ohjelma ja kirjastot joita se käyttää. [GNU.org](https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html)
+
+<br>
+<br>
+<img width="851" height="123" alt="image" src="https://github.com/user-attachments/assets/477db322-8a16-490a-802e-56dd26844767" />
+<br>
+<br>
+
+Latasin siis libcrypt -paketin, joihin crackme -tehtävien -lcrypt linkittää. (```sudo apt install libcrypt-dev```)
+
+Uusi yritys ja tällä kertaa saatiin ajettava ohjelma.
+
+<br>
+<br>
+<img width="705" height="63" alt="image" src="https://github.com/user-attachments/assets/610a0b29-08c7-4fe1-ac94-c09a4bd7167a" />
+<br>
+<br>
+
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### e) Nora crackme01. Solve the binary.
 
+Tehtävän tarkoitukseni oli siis päättää ohjelma exit statukseen 0.
+
+Avasin jälleen ohjelman Ghidrassa. Main-lohkon löytäminen kävi tässä vaiheessa jo helposti aiempien tehtävien pohjalta. Pseudokoodista pystyi tulkitsemaan, että palautus0 tapahtui syötettiin oikea salasana. Myös tämä oikea salasana oli helposti nähtävillä: _password1_. 
+<br>
+<br>
+<img width="591" height="488" alt="PSEUDO CODE" src="https://github.com/user-attachments/assets/dedd6454-ad46-434a-a1fa-01332bd2d428" />
+<br>
+<br>
+
+Ratkaisua oli helppo kokeilla selvitetyllä syötteellä: ````./crackme01.64 password1````:
+
+<img width="426" height="76" alt="SOLVE" src="https://github.com/user-attachments/assets/4144f268-e3b1-4308-9b60-86d8787b0c43" />
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-### f) Nora crackme01e. Solve the binary.
+e) Nora crackme01e. Solve the binary.
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-### g) Nora crackme02. Name the main program's variables from the reverse-engineered binary and explain the program's operation. Solve the binary.
+### f) Nora crackme02. Name the main program's variables from the reverse-engineered binary and explain the program's operation. Solve the binary.
+
+Jälleen Ghidraan auki ja tulkitsemaan. Tällä kertaa merkkijonoja eri vertailtu strcmp() -funktiolla, vaan merkkejä vertailtiin silmukan sisällä. 
+
+1. Ohjelma vaatii yhden argumentin
+2. Asetetaan pcVar5 = "password1     // Oikea salasana merkkijono
+3. cVar2 = vertailun ensimmäinen merkki 'p'
+4. pcVar4 = käyttäjän syötteen ensimmäinen merkki
+5. Silmukka, jossa on itse kikkailu tapahtuu:
+
+        do {        // aloittaa silmukan
+            pcVar5 = pcVar5 + 1;     // osoittaa merkkijonon toiseen indeksiin 'a'
+        
+            if (*pcVar4 == '\0')         // tarkastetaan, loppuiko käyttäjän syöte
+                break;        // jos syöte loppuu, lopettaa
+        
+            if (cVar2 + -1 != (int)*pcVar4) {         // jos käyttäjän syöttämä merkki ei ole
+                                                      // -1 ASCII-arvoa pienempi kuin odotettu merkki
+   
+                printf("No, %s is not correct.\n",pcVar1);        // jos merkki on väärä, tulostetaan
+                return 1;        // lopetetaan ja palautetaan exit-status 1
+            }
+        
+            cVar2 = *pcVar5;        // siirrytään seuraavaan odotettuun merkkiin
+            pcVar4 = pcVar4 + 1;        // siirrytään vertailemaan seuraavaa merkkiä käyttäjän syötteestä
+    
+        } while (cVar2 != '\0');        // tarkastetaan, onko odotettu salasana päättynyty
+
+        // PÄHKINÄNKUORESSA: odotettu oikea merkki -1 = käyttäjän merkki
+
+Eli "salasanan" ollessa password1, on odotettu käyttäjän syöte jokaisen merkin kohdalla -1 ASCII = **o`rrvnqc0**
+
+Kokeiltiin yllä mainittua ja törmättiin backstick ongelmaan. 
+
+<br>
+<br>
+<img width="440" height="72" alt="bquote" src="https://github.com/user-attachments/assets/40e116d9-e107-43e2-8c8c-032359a41f3d" />
+<br>
+<br>
+
+Tämä oli helppo ratkaista laittamalla salasana hipsujen sisään. 
+
+<br>
+<br>
+<img width="420" height="73" alt="CRACKME02 SOLVE" src="https://github.com/user-attachments/assets/cf11f4ee-6010-49d5-87cd-cc4784e462b6" />
+<br>
+<br>
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lähteet:
 
-Karvinen, T.
+Karvinen, T. Sovellusten hakkerointi kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/application-hacking/#homework. Luettu 16.9.2026.
 
-Ghidra Installation Guide. Ghidra Docs. Luettavissa: https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html. Luettu 13.9.2026.
+Ghidra Installation Guide. Ghidra Docs. Luettavissa: https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html. Luettu 16.9.2026.
+
+
+3.16 Options for Linking. GNU.org. Luettavissa: https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html. Luettu 16.9.2026.
