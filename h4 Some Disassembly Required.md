@@ -20,7 +20,7 @@ ________________________________________________________________________________
 
 ### a) Install Ghidra.
 
-Ghidran asentamista varten tarvittiin lisäksi Java Development Kit (JDK), koska Ghidra tarvitsee Java-ympäristö toimiakseen. Asensin Kaliin OpenJDK 25 ja tarkistin asennuksen ```java --version``` ja ````javac --version```` -komennoilla. Molemmat versiot olivat mallia 25.0.4. [Ghidra Docs](https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html)
+Ghidran asentamista varten tarvittiin lisäksi Java Development Kit (JDK), koska Java-pohjainen Ghidra tarvitsee Java ympäristön toimiakseen. Asensin Kaliin OpenJDK 25 ja tarkistin asennuksen ```java --version``` ja ````javac --version```` -komennoilla. Molemmat versiot olivat mallia 25.0.4. [Ghidra Docs](https://ghidradocs.com/9.1_PUBLIC/docs/InstallationGuide.html)
 
 Kun Java-ympäristö oli kunnossa, Ghidran asennus tapahtui ```sudo apt install ghidra``` komennolla.
 
@@ -52,7 +52,7 @@ Aloitin tutkimaan analyysiä etsimällä _Main_ -lohkon. _Symbol Tree_ valikosta
 <br>
 <br>
 
-Tällä löytyi "_What's the password?_" merkkijonon sijainti, jonka tiesin olevan main-lohkon sisällä. Aikani ihmeteltyä erilaisia _FUN_ funktioita, tajusin, että käsittelyssä oleva paketti on vielä .upx pakattu. Tämä lisäsi binääriin UPX-pakkaukseen liittyvää sisältöä, joka monimutkaisti varsinaisen ohjelmalogiikan analysointia jonka johdosta binääristä tein binääristä puretun version. Analyysi kohdistui silti tehtävässä annettuun packd-binääriin eikä lähdekoodiin.
+Tällä löytyi "_What's the password?_" merkkijonon sijainti, jonka tiesin olevan main-lohkon sisällä. Aikani ihmeteltyä erilaisia _FUN_ funktioita, tajusin, että käsittelyssä oleva paketti on vielä .upx pakattu. Pakkaus lisäsi siihen liittyvää sisältöä, joka monimutkaisti varsinaisen ohjelmalogiikan analysointia, joten tein binääristä puretun version. Analyysi kohdistui silti tehtävässä annettuun packd-binääriin eikä lähdekoodiin.
 
 Loin uuden projektin, johon lisäsin puretun packd -tiedoston. Samoilla askelilla löytyi main-lohko ja sen löytämä pseudokoodi helposti: 
 
@@ -72,12 +72,12 @@ Loin uuden projektin, johon lisäsin puretun packd -tiedoston. Samoilla askelill
 #### Muuttujanimet kuntoon
 
 Lähdin harjoittamaan **reverse engineringiä** nimeämällä automaattiset muuttujat helpommin ymmärrettäväksi:
-- iVarl --> int passwordComparison;
+- iVar1 --> int passwordComparison;
 - char local_28 --> char password
 
 #### Salasana
 
-Oikea salasana esiintyy strcomp()-funktion parametrina, se voidaan ratkaista ilman lähdekoodia. Se olisi helppo testata antamalla se syötteeksi, mikä palauttaisi lipun ja täten todistaisi, että tehtävän voi ratkaista ilman alkuperäistä lähdekoodia pelkän reverse engineeratun binäärin avulla. 
+Oikea salasana esiintyy strcmp()-funktion parametrina, se voidaan ratkaista ilman lähdekoodia. Se olisi helppo testata antamalla se syötteeksi, mikä palauttaisi lipun ja täten todistaisi, että tehtävän voi ratkaista ilman alkuperäistä lähdekoodia pelkän reverse engineeratun binäärin avulla. 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -94,7 +94,7 @@ Alkuun samat askeleet kuin aiemmin. Ghidraan uusi projekti, johon importattiin _
 <br>
 <br>
 
-Tarkoitukseni oli siis muuttaa koodi niin, että kaikki paitsi oikea salasana tulostaisi lipun. Ajattelin aluksi, että voisin yksinkertaisesti vaihtaa ehdon muotoon ````if (iVarl != 0) //hyväksy kaikki väärät```` mutta tajusin, että varsinainen muutos tulisi varmaan tehdä assemblyssä. Tämä lähti liikkeelle etsimällä binääristä kohta, jossa vertailu tapahtuu. Oikealle riville pääsi helposti klikkaamalla koodista haluttua kohtaa. 
+Tarkoitukseni oli siis muuttaa koodi niin, että kaikki paitsi oikea salasana tulostaisi lipun. Ajattelin aluksi, että voisin yksinkertaisesti vaihtaa ehdon muotoon ````if (iVarl != 0) //hyväksy kaikki väärät```` mutta tajusin, että varsinainen muutos tulisi tehdä assemblyssä. Tämä lähti liikkeelle etsimällä binääristä kohta, jossa vertailu tapahtuu. Oikealle riville pääsi helposti klikkaamalla koodista haluttua kohtaa. 
 
 <br>
 <br>
@@ -102,7 +102,7 @@ Tarkoitukseni oli siis muuttaa koodi niin, että kaikki paitsi oikea salasana tu
 <br>
 <br>
 
-Assemblyssä näkyy CALL (kutsuu strcmp-funktiota), jonka jälkeen TEST (vertaillaan salasanoja) ja JNZ (Jump if Not Zero) hyppää kohtaan "_Sorry, no bonus_", jos tulos ei ole nolla. Lähdin siis muuttamaan JNZ --> JZ (hypätään nollaan, eli lipun tulostukseen).
+Assemblyssä näkyy CALL (kutsuu strcmp-funktiota), jonka jälkeen TEST (tarkistaa, onko palautusarvo 0) ja JNZ (Jump if Not Zero) hyppää kohtaan "_Sorry, no bonus_", jos tulos ei ole nolla. Lähdin siis muuttamaan JNZ --> JZ (hypätään nollaan, eli lipun tulostukseen).
 
 #### Binäärin patchaaminen
 
@@ -134,7 +134,7 @@ ________________________________________________________________________________
 
 Latasin CracMe haasteet Kaliin komennolla ````git clone https://github.com/NoraCodes/crackmes.git````. README-tiedosta löytyi lisäohjeistusta: komennolla ````make <name>```` saatiin käännettyä crackme01 & crackme02 binääri. 
 
-Sain kuitenkin virheilmoituksen, että _lcrypt_ puuttuu. Perehdyin aiheeseen ja käsitykseni mukaan GCC kääntää koodin mutta tarvitsee linkkerin yhdistämään ohjelma ja kirjastot joita se käyttää. [GNU.org](https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html)
+Sain kuitenkin virheilmoituksen, että _lcrypt_ puuttuu. Perehdyin aiheeseen ja käsitykseni mukaan GCC toimii kääntäjänä mutta tarvitsee linkkerin yhdistämään ohjelman ja kirjastot joita se käyttää. Linkitysvaiheessa objektit ja kirjastot yhdistetään suoritettavaksi ohjelmaksi. [GNU.org](https://gcc.gnu.org/onlinedocs/gcc/Link-Options.html)
 
 <br>
 <br>
@@ -142,7 +142,7 @@ Sain kuitenkin virheilmoituksen, että _lcrypt_ puuttuu. Perehdyin aiheeseen ja 
 <br>
 <br>
 
-Latasin siis libcrypt -paketin, joihin crackme -tehtävien -lcrypt linkittää. (```sudo apt install libcrypt-dev```)
+Latasin siis libcrypt-dev -paketin, joka sisälsi vaadittavat tiedostot tehtävissä kannalta linkittämiseen. (```sudo apt install libcrypt-dev```)
 
 Uusi yritys ja tällä kertaa saatiin ajettava ohjelma.
 
@@ -159,7 +159,7 @@ ________________________________________________________________________________
 
 Tehtävän tarkoitukseni oli siis päättää ohjelma exit statukseen 0.
 
-Avasin jälleen ohjelman Ghidrassa. Main-lohkon löytäminen kävi tässä vaiheessa jo helposti aiempien tehtävien pohjalta. Pseudokoodista pystyi tulkitsemaan, että palautus0 tapahtui syötettiin oikea salasana. Myös tämä oikea salasana oli helposti nähtävillä: _password1_. 
+Avasin jälleen ohjelman Ghidrassa. Main-lohkon löytäminen kävi tässä vaiheessa jo helposti aiempien tehtävien pohjalta. Pseudokoodista pystyi tulkitsemaan, ohjelma palauttaa arvon 0 kun syötetty salasana täsmää ohjelmaan tallennettuun salasanaan. Myös tämä oikea salasana oli helposti nähtävillä: _password1_. 
 <br>
 <br>
 <img width="591" height="488" alt="PSEUDO CODE" src="https://github.com/user-attachments/assets/dedd6454-ad46-434a-a1fa-01332bd2d428" />
@@ -174,8 +174,7 @@ ________________________________________________________________________________
 
 ### e) Nora crackme01e. Solve the binary.
 
-Jälleen Ghidraan auki ja tulkitsemaan. Pseudokoodi oli hyvin samankaltainen kuin aiemmassa tehtävässä mutta ``strcmp()`` sijaan funktiona toimi ``strncmp()``. Tämä vertaili merkkijonon pituutta, joten salasanassa tuli olla täsmälleen 10 merkkiä.
-
+Jälleen Ghidraan auki ja tulkitsemaan. Pseudokoodi oli hyvin samankaltainen kuin aiemmassa tehtävässä mutta ``strcmp()`` sijaan funktiona toimi ``strncmp()``. Tämä vertaili merkkijonosta **enintään** annetun määrän merkkejä (10). 
 <br>
 <img width="511" height="591" alt="CRACKME01E BINARY" src="https://github.com/user-attachments/assets/2ec30c03-e20c-42c0-89a7-fc9c4721db5d" />
 
@@ -197,7 +196,7 @@ Vielä kerran Ghidraan ja tutkimaan. Tällä kertaa merkkijonoja eri vertailtu s
 <br>
 
 1. Ohjelma vaatii yhden argumentin
-2. Asetetaan pcVar5 = "password1     // Oikea salasana merkkijono
+2. Asetetaan pcVar5 = "password1     // vertailumerkkijono
 3. cVar2 = vertailun ensimmäinen merkki 'p'
 4. pcVar4 = käyttäjän syötteen ensimmäinen merkki
 5. Silmukka, jossa on itse kikkailu tapahtuu:
@@ -208,8 +207,8 @@ Vielä kerran Ghidraan ja tutkimaan. Tällä kertaa merkkijonoja eri vertailtu s
             if (*pcVar4 == '\0')         // tarkastetaan, loppuiko käyttäjän syöte
                 break;        // jos syöte loppuu, lopettaa
         
-            if (cVar2 + -1 != (int)*pcVar4) {         // jos käyttäjän syöttämä merkki ei ole
-                                                      // -1 ASCII-arvoa pienempi kuin odotettu merkki
+            if (cVar2 + -1 != (int)*pcVar4) {         // Jos käyttäjän syöttämä merkki on 
+                                                      // -1 ASCII-arvoa pienempi kuin vertailumerkkijono (password1)
    
                 printf("No, %s is not correct.\n",pcVar1);        // jos merkki on väärä, tulostetaan
                 return 1;        // lopetetaan ja palautetaan exit-status 1
