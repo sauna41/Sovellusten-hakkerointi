@@ -14,25 +14,32 @@ ________________________________________________________________________________
 ## h5 Binääri tässä, missä koodit? (Lari)
 
 
-### main.cpp - käytiin yhdessä tunnilla läpi GDB:n perusasiat.
+### main.cpp
 
 
-GNU Debugger selitys tänne
+GNU Debugger eli GDB mahdollistaa ohjelman sisälle kurkkaamisen sitä ajattaessa. Sen avulla voidaan tutkia mitä ohjelmassa tapahtuu kun se ajetaan tai missä kohtaa ohjelma kaatuu. DBG:lla voidaan tutkia ohjelmaa, joka pyörii joko natiivisti host-koneella tai toisella koneella (remote). 
 
-käytön perusteita tänne
+Debuggerilla pystyy käynnistämään ohjelman, pysäyttämään sen määritetyillä ehdoilla, analysoimaan mitä tapahtuu tai muuttamaan ohjelmaa. [SourceWare](https://sourceware.org/gdb/)
+
     
-- split layout
 - run
+  - Käynnistää ohjelman ajamisen ohjelman alusta
 - break
-  - asettaa breakpointin haluttuun kohtaan: ``break 10`` riville 10, ```break main``` main-lohkon alkuun
+  - Asettaa breakpointin haluttuun kohtaan. Ohjelman ajo pysähtyy merkattuun kohtaan.
+        - ``break 10`` riville 10, ```break main``` main-lohkon alkuun
+- clear
+  - Poistaa tietyn breakpointin
+        - ``clear <rivinumero>`` 
 - delete
-    - poistaa asetetut breakpointit
+    - Poistaa kaikki asetetut breakpointit
+- watch
+  - Pysäyttää ohjelman kun määritetty ehto täyttyy
 - next
+  - Suorittaa seuraavan koodirivin
 - continue
+  - Ohjelman ajoa jatketaan seuraavaan break- tai watchpointtiin asti
 
-
-jne
-   
+[YouLinux](https://www.yolinux.com/TUTORIALS/GDB-Commands.html)
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -44,7 +51,7 @@ Avasin GDB:n ```layout split``` näkymän, jotta pystyin samanaikaisesti analyso
 
 Virhe löytyi for-loopin sisältä:
 
-    for (int i = 0; i <= size; i++) // <= tulisi olla pelkkä <
+    > for (int i = 0; i <= size; i++) // <= tulisi olla pelkkä <
 
 
 Nyt ``<=`` aiheutti tilanteen, jossa YLIVUOTO.
@@ -61,6 +68,9 @@ Ongelmaan oli yksinkertainen ratkaisu: loin lähdekoodista kopion, jonne korjasi
 <img width="1393" height="352" alt="FIXED_TULOSTE" src="https://github.com/user-attachments/assets/9ae332a4-2608-4a4c-951e-653b3a727345" />
 
 
+
+Rikkinäisen _buggy_program_ & korjatun _fixed_program_ tulosteet vierekkäin:
+<br>
 <img width="1719" height="288" alt="image" src="https://github.com/user-attachments/assets/7b48922a-b8e6-49de-8944-c6db3cd196d4" />
 
 
@@ -93,7 +103,10 @@ ________________________________________________________________________________
 
 ### Lähteet
 
-Haaga-Helian Sovellusten hakkerointi ja -haavoittuvuudet kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/application-hacking/. 
+Iso-Anttila L, Karvinen T. Haaga-Helian Sovellusten hakkerointi ja -haavoittuvuudet kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/application-hacking/. Luettu 17.9.2026.
 
+What is GDB? GDB: The GNU Project Debugger. Luettavissa: https://sourceware.org/gdb/. Luettu 17.9.2026.
+
+GNU GDB Debugger Command Cheat Sheet. YouLinux.com Luettavissa: https://www.yolinux.com/TUTORIALS/GDB-Commands.html. Luettu 17.9.2026.
 
 
