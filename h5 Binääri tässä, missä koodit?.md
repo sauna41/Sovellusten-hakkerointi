@@ -16,6 +16,16 @@ ________________________________________________________________________________
 
 ### main.cpp - käytiin yhdessä tunnilla läpi GDB:n perusasiat.
 
+käytön perusteita tänne
+    
+    split layout
+    run
+    break
+    delete
+    next
+    continue
+    jne
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lab0.zip - Harjoitellaan tunnilla itsenäisesti debuggerin käyttöä. Etsitään virhe ja pyritään korjaamaan se
@@ -41,6 +51,9 @@ Ongelmaan oli yksinkertainen ratkaisu: loin lähdekoodista kopion, jonne korjasi
 <img width="1350" height="373" alt="BUGGY_TULOSTE" src="https://github.com/user-attachments/assets/7799bfcb-0afb-4880-b21f-bea159c5b719" />
 
 <img width="1393" height="352" alt="FIXED_TULOSTE" src="https://github.com/user-attachments/assets/9ae332a4-2608-4a4c-951e-653b3a727345" />
+
+
+<img width="1731" height="299" alt="TULOSTE SIDE BY SIDE" src="https://github.com/user-attachments/assets/358c885a-aa2f-4e3a-beb7-392c7b4dfa91" />
 
 
 
