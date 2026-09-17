@@ -2,11 +2,11 @@ _Kurssi: Tunkeutumistestaus ICI005AS3A-3007_
 
 _Tekijä: Henri Äikäs_
 
-_Alusta: Windows 11 / Kali Linux (VirtualBox)
+_Alusta: Windows 11 / Kali Linux (VirtualBox) --> GNU Debugger
 
 _Päivämäärä: 17.9.2026_
 
-_Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026. Tehtävänanto on **h5 Binääri tässä, missä koodit?**. Opettajana toimi Tero Karvinen.
+_Tämä raportti on osa Haaga-Helian Tunkeutumistestaus -kurssia syksyllä 2026. Tehtävänanto on **h5 Binääri tässä, missä koodit?**. Opettajana toimi Lari Iso-Anttila.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -16,15 +16,23 @@ ________________________________________________________________________________
 
 ### main.cpp - käytiin yhdessä tunnilla läpi GDB:n perusasiat.
 
+
+GNU Debugger selitys tänne
+
 käytön perusteita tänne
     
-    split layout
-    run
-    break
-    delete
-    next
-    continue
-    jne
+- split layout
+- run
+- break
+  - asettaa breakpointin haluttuun kohtaan: ``break 10`` riville 10, ```break main``` main-lohkon alkuun
+- delete
+    - poistaa asetetut breakpointit
+- next
+- continue
+
+
+jne
+   
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -70,6 +78,7 @@ ________________________________________________________________________________
 
 ### Kirjoita dokumentti siitä, miten sait nämä selville. Sekä mitä uutta opit GNU Debuggerista, että mitä et oppinut tunnilla
 
+GNU Debugger oli entuudestaan täysin tuntematon, joten kaikki opitut asiat luennolla tulivat uusina. Kun jatkoin harjoitusten suorittamista myöhemmin, opin hyödyntämään luennolla opittuja asioita sekä 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lab3.zip - Tiedostossa on Nora Crackme -haasteita. Valitse yksi tiedosto ja yritä ratkaista binäärin salasana. Kirjoita tästä dokumentti, miten sait salasanan selville.
@@ -83,6 +92,8 @@ ________________________________________________________________________________
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lähteet
+
+Haaga-Helian Sovellusten hakkerointi ja -haavoittuvuudet kurssimateriaali. 2026. Luettavissa: https://terokarvinen.com/application-hacking/. 
 
 
 
