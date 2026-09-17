@@ -53,7 +53,7 @@ Ongelmaan oli yksinkertainen ratkaisu: loin lähdekoodista kopion, jonne korjasi
 <img width="1393" height="352" alt="FIXED_TULOSTE" src="https://github.com/user-attachments/assets/9ae332a4-2608-4a4c-951e-653b3a727345" />
 
 
-<img width="1731" height="299" alt="TULOSTE SIDE BY SIDE" src="https://github.com/user-attachments/assets/358c885a-aa2f-4e3a-beb7-392c7b4dfa91" />
+<img width="1719" height="288" alt="image" src="https://github.com/user-attachments/assets/7b48922a-b8e6-49de-8944-c6db3cd196d4" />
 
 
 
