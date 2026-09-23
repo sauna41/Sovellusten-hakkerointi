@@ -28,7 +28,7 @@ Oikea salasana ja lippui löytyivätkin yllättävän helposti. Tehtävänannon 
 
 Tämän perusteella kokeilin vielä, onnistuisiko merkkijonojen filtteröinti niin, että kaikkien merkkien sijaan vain haluttu tieto saataisiin ongittua esiin:
 
-<img width="696" height="154" alt="filleröity" src="https://github.com/user-attachments/assets/2222f24c-8c95-4ded-ba56-9c9d87c73a90"/>
+<img width="716" height="161" alt="image" src="https://github.com/user-attachments/assets/86e9acfd-9bf9-45a2-ba66-743d0e751f38" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
