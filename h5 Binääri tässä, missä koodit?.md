@@ -163,7 +163,70 @@ ________________________________________________________________________________
 
 ### Lab2.zip - kotitehtävä. Ohjelma on käännetty, mutta koodit ovat päässeet katoamaan. Tehtävänä on löytää ohjelman kysymä uusi salasana ja ohjelman tulostama lippu. 
 
-Olen dokumentoinut ratkaisun toisen tehtävän yhteydessä. Linkki dokumentointiin löytyy [täältä](https://github.com/sauna41/Sovellusten-hakkerointi/blob/main/h3%20No%20Strings%20Attached.md#a-strings-download-ezbin-challengeszip-run-passtr-find-the-correct-password-using-strings-also-find-the-flag-preferably-without-looking-at-the-source-if-you-can)
+_Olen dokumentoinut yhdenlaista ratkaisua jo toisen tehtävän yhteydessä. Linkki tähän dokumentointiin löytyy [täältä](https://github.com/sauna41/Sovellusten-hakkerointi/blob/main/h3%20No%20Strings%20Attached.md#a-strings-download-ezbin-challengeszip-run-passtr-find-the-correct-password-using-strings-also-find-the-flag-preferably-without-looking-at-the-source-if-you-can)_
+
+##### Tiedoston analysointia
+
+Ennen kuin lähdin tutkimaan debuggeria, yritin kartoittaa mitä ohjelman sisältä löytyy. Otin ensimmäisenä tarkasteluun ohjelman sisältämiä funktioiden ja muuttujien nimiä komennolla
+
+        nm ./passtr2o
+
+Tästä selvisi, että ohjelma sisältää ainakin _main, EaseAs & check paswword_ -funktiot. Myös niiden sijainnit muistissa olivat nähtävillä (_0000000001080_)
+ - main - pääfunktio
+ - check_password - liittyy todennäköisesti salasanan tarkistamiseen
+
+<img width="613" height="607" alt="NM NIMIÄ" src="https://github.com/user-attachments/assets/9b034bae-89ab-47ac-98ee-13cf88344b19" />
+<br>
+
+Nähtävillä oli myös **U** symboleja, joiden takana oli komentoja kuten printf & scanf. **U** tarkoittaa _undefined_, eli ne tulevat ulkoisesta kirjastosta eivätkä ole osa ohjelman omaa koodia. LÄHDE TÄNNE-
+
+
+
+#### check_password
+
+_check_password_ -funktio oli löydetty, joten lähdin pilkkomaan sitä pienempiin paloihin debuggerin sisällä. 
+
+    disassemble check_pasword
+
+<img width="938" height="467" alt="DISASSEMBLE" src="https://github.com/user-attachments/assets/14182389-6d2d-4ea3-8565-1fbccd64a2de" />
+<br>
+
+_check_password_ funktio sisältä löytyi ``XOR %eax, %eax`` sekä ``ret``. Pienellä selvittelyllä tulkitsin tämän tarkoittamaan käytännössä XOR 0 = 0, eli XOR asettaa arvoksi 0 ja ``ret`` eli return palauttaa. Käytännössä return 0;. Hypoteesi tässä kohtaa oli, että salasana tarkistetaan muualla ja tämä funktio vain palauttaa tietyissä oloissa 0. 
+<br>
+
+#### main
+
+Seuraavaksi main() -funktio purettiin palasiin:
+
+    disassemble main
+<br>
+<img width="761" height="589" alt="MAIN" src="https://github.com/user-attachments/assets/2285cc28-cdc5-4696-83b7-ad2e5588a66c" />
+<br>
+
+Ensimmäinen havainto oli 0x1060 ``<_isoc99_scanf@plt>``, jonka uskoin olevan käyttäjän syötteen lukeminen. Hetkeä myöhemmin syöte siirtyy ``mov``:n avulla toiselle funktiolle, jolla syötettyä salasanaa todennäköisesti verrataan oikeaan. 
+
+Tarkastin, millä formaatilla ``scanf`` lukee syötteen:
+
+        gdb -batch -ex 'x/s 0x2019' ./passtr2o    // komento
+        0x2019: "%19s"    // tuloste
+
+Komento x/s eli _examine_ oli siis käytännössä, että _"tutki muistia osoitteesta 0x2019 ja lue sieltä merkkijono."_ Osoite 0x2019 saatiin aiemmasta main() -funktion tutkimisesta, jossa ohjelma lisää ``lea    0xf2d(%rip),rdi        # 0x2019`` rekisteriin juuri tuon osoitteen.
+
+Tulos kertoi, että merkkijono luetaan käyttäjän syötteestä (%s) ja että se on enintään 19 merkkiä pitkä. Tiedossa oli, että main() -funktio kutsuu <mAsdf3a> -funktiota heti syötteen lukemisen jälkeen, joten siirryin tutkimaan sitä tarkemmin
+
+#### mAsdf3a
+
+    disassemble mAsdf3a
+
+<img width="670" height="588" alt="image" src="https://github.com/user-attachments/assets/a5fa6cd9-88ab-4f2f-a4c0-8c06510286d9" />
+<br>
+
+Funktion sisältä löytyi ``strlen, comp, jne``, eli uskoin vahvasti, että tämä on se funktio, jossa itse vertailu suoritetaan
+    - strlen = merkkijonon pituus
+    - comp = compare
+    - jne = jump if not equal
+
+Lopussa ``mov`` palauttaa arvon 1, jos kaikki tarkistukset menivät läpi. 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
