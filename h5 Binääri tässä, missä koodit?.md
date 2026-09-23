@@ -112,7 +112,7 @@ Ensimmäinen _print_scrambled()_ -kutsu tulosti tulosteen "Hello, world" normaal
 Toinen kutsu ei kuitenkaan tuottanut tulostetta vaan ohjelma kaatui. Tämä johtui siis siitä, että tulostettava _bad_message_ osoittaa NULL-osoitteeseen. do..while -loopin sisällä ohjelma yrittää hakea merkin kohdasta _*message_ mutta _message_ sisältää NULL-arvon. Tämä johtaa siihen, että ohjelma yrittää lukea muistia virheellisestä osoitteesta. Tällöin ohjelma kaatuu ennen kuin toinen viesti ehtii tulostua. 
 
 
-<img width="938" height="84" alt="GOOD_MESSAGE" src="https://github.com/user-attachments/assets/6fb3efc2-ced4-4b28-9bad-15557dcc1dc2" />
+[good_message](https://github.com/user-attachments/assets/6fb3efc2-ced4-4b28-9bad-15557dcc1dc2)
 <br>
 
 <img width="803" height="194" alt="BAD_MESSAGE" src="https://github.com/user-attachments/assets/083f6586-30f9-4852-82c0-9b5ef8650259" />
