@@ -112,10 +112,10 @@ Ensimmäinen _print_scrambled()_ -kutsu tulosti tulosteen "Hello, world" normaal
 Toinen kutsu ei kuitenkaan tuottanut tulostetta vaan ohjelma kaatui. Tämä johtui siis siitä, että tulostettava _bad_message_ osoittaa NULL-osoitteeseen. do..while -loopin sisällä ohjelma yrittää hakea merkin kohdasta _*message_ mutta _message_ sisältää NULL-arvon. Tämä johtaa siihen, että ohjelma yrittää lukea muistia virheellisestä osoitteesta. Tällöin ohjelma kaatuu ennen kuin toinen viesti ehtii tulostua. 
 
 
-<img width="938" height="84" alt="GOOD MESSAGE" src="https://github.com/user-attachments/assets/6fb3efc2-ced4-4b28-9bad-15557dcc1dc2" />
+<img width="938" height="84" alt="GOOD_MESSAGE" src="https://github.com/user-attachments/assets/6fb3efc2-ced4-4b28-9bad-15557dcc1dc2" />
 <br>
-<img width="803" height="194" alt="BAD MESSAGE" src="https://github.com/user-attachments/assets/083f6586-30f9-4852-82c0-9b5ef8650259" />
-
+<img width="803" height="194" alt="BAD_MESSAGE" src="https://github.com/user-attachments/assets/083f6586-30f9-4852-82c0-9b5ef8650259" />
+<br>
 
 #### Korjaaminen
 
@@ -125,36 +125,6 @@ Kun ongelmakohta oli löydetty, se oli helppo korjata. Lisäämällä ehto
         return; 
     } 
 ohjelma tarkastaa alussa, onko sille annettu NULL-osoitin. Jos on, niin funktio lopettaa toimintansa eikä yritä käsitellä epäkelpoa muistiosoitetta.  
-
-
-
-<br>
-
-
-Avasin jälleen ``gdb ./gdb_example1`` komennolla Debuggerin työhakemistosta ja aloin tutkimaan koodia.
-
-Ohjelma oli jaettu print_scrambled() -funktioon, joka käsittelee merkkijonoa ja main() -funktioon, joka aloittaa ohjelman.
-
-#### main()
-
-- Pääohjelma, jossa luodaan kaksi muuttujaa: _good_message_ "Hello, world" ja _bad_message_ NULL.
-- ``char *`` tarkoittaa osoitinta merkkiin
-   - _good_message_ kertoo, missä "Hello, world" sijaitsee muistissa
-   - _bad_message_ NULL tarkoittaa, että osoitin ei osoita mihinkään kelvolliseen kohtaan
-
-#### print_scrambled()
-
-- funktio, joka tulostaa joko _good_messagen_ tai _bad_messagen_.
-- _bad_message_ oli NULL, joten sen tulostaminen aiheuttaa ongelman. 
-
-
-Ensin asetin breakpointin _print_scrambled_ -funktioon ja ajoin ohjelman.
-
-Ensimmäinen _print_scrambled()_ -kutsu tulosti tulosteen "Hello, world" normaalisti. Toinen kutsu ei kuitenkaan tuottanut tulostetta vaan ohjelma kaatui. Tämä johtui siis siitä, että käsiteltävä _bad_message_ osoittaa NULL-osoitteeseen. do..while -loopin sisällä ohjelma yrittää hakea merkkiä kohdassa *message ennen kuin merkkiä ehditään tulostaa. 
-
-
-
-<img width="706" height="228" alt="2X PRINT MESSAGES" src="https://github.com/user-attachments/assets/c5b481f2-4903-44dc-8804-a75d9ac66dd1" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
