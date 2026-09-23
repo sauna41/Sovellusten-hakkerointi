@@ -145,7 +145,9 @@ ________________________________________________________________________________
 
 ### Lab3.zip - Tiedostossa on Nora Crackme -haasteita. Valitse yksi tiedosto ja yritä ratkaista binäärin salasana. Kirjoita tästä dokumentti, miten sait salasanan selville.
 
+Olen dokumentoinut aiemmin ratkomiani Nora Crackme -haasteita aiemmissa tehtävissä. Ne ovat saatavilla linkin takaa:
 
+[Nora Crackme -haasteita](https://github.com/sauna41/Sovellusten-hakkerointi/blob/main/h4%20Some%20Disassembly%20Required.md#d-nora-crackme-compile-to-binaries-tindall-2023-noracodes--crackmes-read-readmemd-dont-look-at-the-source-code-unless-you-need-training-wheels-in-these-tasks-binaries-are-reverse-engineered-binaries-are-not-modified-because-otherwise-the-solution-to-every-task-would-be-to-change-the-return-value-to-return-0)
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lähteet
