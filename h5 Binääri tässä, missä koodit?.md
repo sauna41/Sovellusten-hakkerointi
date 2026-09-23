@@ -295,7 +295,7 @@ Opin esimerkiksi ymmärtämään sekä asettamaan breakpointteja, suorittamaan o
 
 Ohjelman etenemistä oli helppo seurata "reaaliajassa". Oli hyödyllistä kun ohjelman pystyi pysäyttämään haluttuun kohtaan, jolloin sen hetkistä tilannetta pystyi tutkimaan tarkemmin tai tulostamaan sen hetkiset ``print messaget``. Lähdekoodin ja debuggerin yhdistäminen tukivat toisiaan, sillä vaikka ongelmakohtaa ei tajuaisi suoraan toisesta, pystyi niitä tutkimaan ristiin ja tutkimaan hypoteesejä. 
 
-Tehtävissä oli saatavilla lähdekoodit mutta harjoittelulla GDB:ää voisi todennäköisesti hyödyntää myös ilman sitä. Toki se vaatisi konekäskyjen ja rekisterien opettelua mutta tässä voisi todennäköisesti hyödyntää esimerkiksi Ghidraa ja sen tuottamaa pseudokoodia. 
+Tehtävissä oli saatavilla lähdekoodit mutta GNU:ta pystyi hyödyntämään ilmankin. Konekäskyjen opettelu sekä niiden vaikutukset toisiinsa vaativat huomattavasti ajatustyötä. Muisti rekisterien tuntui erityisen haastavalta sijaintien ollessa "pitkiä" ja jokseenkin hankalia seurata.
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
@@ -307,5 +307,7 @@ Iso-Anttila L, Karvinen T. Haaga-Helian Sovellusten hakkerointi ja -haavoittuvuu
 What is GDB? GDB: The GNU Project Debugger. Luettavissa: https://sourceware.org/gdb/. Luettu 17.9.2026.
 
 GNU GDB Debugger Command Cheat Sheet. YouLinux.com Luettavissa: https://www.yolinux.com/TUTORIALS/GDB-Commands.html. Luettu 17.9.2026.
+
+ChatGPT. Saatavilla: chatgpt.com. Käytetty 23.9.2026.
 
 
