@@ -131,7 +131,7 @@ ________________________________________________________________________________
 
 ### Lab2.zip - kotitehtävä. Ohjelma on käännetty, mutta koodit ovat päässeet katoamaan. Tehtävänä on löytää ohjelman kysymä uusi salasana ja ohjelman tulostama lippu. 
 
-
+Olen dokumentoinut ratkaisun toisen tehtävän yhteydessä. Linkki dokumentointiin löytyy [täältä](https://github.com/sauna41/Sovellusten-hakkerointi/blob/main/h3%20No%20Strings%20Attached.md#a-strings-download-ezbin-challengeszip-run-passtr-find-the-correct-password-using-strings-also-find-the-flag-preferably-without-looking-at-the-source-if-you-can)
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Kirjoita dokumentti siitä, miten sait nämä selville. Sekä mitä uutta opit GNU Debuggerista, että mitä et oppinut tunnilla
