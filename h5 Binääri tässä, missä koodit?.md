@@ -49,6 +49,7 @@ Avasin GDB:n ```layout split``` näkymän, jotta pystyin samanaikaisesti analyso
 
 <img width="1563" height="856" alt="LAYOUT SPLIT" src="https://github.com/user-attachments/assets/3c3cc23b-060c-4184-8a7d-ed5fd069ad72" />
 
+
 Virhe löytyi for-loopin sisältä:
 
     > for (int i = 0; i <= size; i++) // <= tulisi olla pelkkä <
@@ -84,6 +85,28 @@ ________________________________________________________________________________
     
 
 Avasin jälleen ``gdb ./gdb_example1`` komennolla Debuggerin työhakemistosta ja aloin tutkimaan koodia.
+
+C-kieli ei ollut itselleni vahvin ohjelmointikieli, joten lähdin ensin selvittämään rivi riviltä selvittämään mitä ohjelma tekee
+
+    #include "stdio.h"    // stdio-kirjasto, joka sisältää C-työkaluja kuten printf-funktion
+
+    void print_scrambled(char *message)    // funktio, joka saa parametrina osoittimen merkkijonon
+    {
+      register int i = 3;    // muuttujan i arvoksi asetetaan kokonaisluku 3
+      do {    // silmukka
+        printf("%c", (*message)+i);     // tulostetaan nykyinen merkki ja lisätään siihen muuttuja i (3)
+      } while (*++message);    // siirrytään seuraavaan merkkiin kunnes \0
+      printf("\n");
+    }
+    
+    int main()    // ohjelman suoritus
+    {
+      char * bad_message = NULL;    // osoitin, joka ei osoita kelpoon muistiosoitteeseen
+      char * good_message = "Hello, world.";    // osoitin merkkijonoon "Hello, world"
+    
+      print_scrambled(good_message);    // tulostetaan good_message ("Hello, world")
+      print_scrambled(bad_message);    // yritetään käsitellä NULL-osoitinta = virhe
+    }
 
 Ohjelma oli jaettu print_scrambled() -funktioon, joka käsittelee merkkijonoa ja main() -funktioon, joka aloittaa ohjelman.
 
