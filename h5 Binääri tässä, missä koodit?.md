@@ -103,7 +103,7 @@ Ohjelma oli jaettu print_scrambled() -funktioon, joka käsittelee merkkijonoa ja
 - - _bad_message_ oli NULL, joten sen tulostaminen aiheuttaa ongelman. 
 
 
-#### GNU debugger tutkiminen
+#### GNU Debugger tutkiminen
 
 Ensin asetin breakpointin _print_scrambled_ -funktioon ja käynnistin ohjelman.
 
@@ -125,6 +125,7 @@ Kun ongelmakohta oli löydetty, se oli helppo korjata. Lisäämällä ehto
     if (message == NULL) { 
         return; 
     } 
+    
 ohjelma tarkastaa alussa, onko sille annettu NULL-osoitin. Jos on, niin funktio lopettaa toimintansa eikä yritä käsitellä epäkelpoa muistiosoitetta.  
 
 ________________________________________________________________________________________________________________________________________________________________________________________
@@ -136,11 +137,18 @@ ________________________________________________________________________________
 
 ### Kirjoita dokumentti siitä, miten sait nämä selville. Sekä mitä uutta opit GNU Debuggerista, että mitä et oppinut tunnilla
 
-GNU Debugger oli entuudestaan täysin tuntematon, joten kaikki opitut asiat luennolla tulivat uusina. Myös C oli kielenä vieras, joten sen tulkitsiminen vaati ajatustyötä. 
+GNU Debugger oli entuudestaan täysin tuntematon, joten kaikki opitut asiat luennolla tulivat uusina. Myös C oli kielenä vieras, joten sen tulkitsiminen vaati ajatustyötä. Ensimmäisen luennon aikan opin kuintekin Debuggerin peruskäytön ja miten ohjelman suoritusta voi tutkia vaiheittain.
 
-Kun jatkoin harjoitusten suorittamista myöhemmin, opin hyödyntämään luennolla opittuja asioita sekä tutuistin itsenäisesti uusiin komentoihin. 
+Labraharjoitusten aikana opin hyödyntämään luennolla opittuja komentoja ja tutuistuin myös itsenäisesti GNU debuggerin muihin toimintoihin. 
 
-Ohjelman etenemistä oli helppo seurata "reaaliajassa" Debuggerin avulla. 
+Opin esimerkiksi ymmärtämään sekä asettamaan breakpointteja, suorittamaan ohjelmaa vaihe vaiheelta ja analysoimaan ohjelman toimintaa näissä vaiheissa. Myös muuttujien ja muistiosoitteiden arvoja. 
+
+Ohjelman etenemistä oli helppo seurata "reaaliajassa". Oli hyödyllistä kun ohjelman pystyi pysäyttämään haluttuun kohtaan, jolloin sen hetkistä tilannetta pystyi tutkimaan tarkemmin tai tulostamaan sen hetkisen tulosteen. 
+
+Opin harjoitusten aikana yhdistelemään debuggerin ja lähdekooodin lukemisen. 
+
+Seuraava askel varmaan olisi osata hyödyntää debuggeria myös ilman lähdekoodia. 
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lab3.zip - Nora Crackme -haasteita
