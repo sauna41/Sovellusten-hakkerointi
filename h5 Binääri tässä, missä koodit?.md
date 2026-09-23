@@ -126,12 +126,14 @@ Ohjelma oli jaettu print_scrambled() -funktioon, joka käsittelee merkkijonoa ja
 - do...while -silmukka jatkaa seuraavaan merkkiin aina niin kauan kunnes merkkijono loppuu (\0)
 
 Ongelma syntyy siis silloin, kun funktiolle annetaan _bad_message_ joka on NULL. NULL ei osoita mihinkään muistiosoitteeseen, joten kun ohjelma yrittää suorittaa ***message** eli lukea merkkiä muistista, se kohtaa virheellisen muistiosoitteeen ja ohjelma kaatuu.
+<br>
+
 
 #### GNU Debugger tutkiminen
 
-Ensin asetin breakpointin _print_scrambled_ -funktioon ja käynnistin ohjelman.
+Ensin asetin breakpointin _print_scrambled_ -funktioon ja käynnistin ohjelman. ``print`` -komennoilla pystyin tutkimaan muuttujien ja osoittimien arvoja haluamissani kohdissa pitkin suoritusta.
 
-Ensimmäinen _print_scrambled()_ -kutsu käsitteli _good_messagen_ normaalisti ja tulosti "Hello, world". Toinen kutsu ei tuottanut tulostetta vaan aiheutti ohjelman kaatumisen. 
+Asetin ensin breakpoitin -funktioon. Ensimmäinen _print_scrambled()_ -kutsu käsitteli _good_messagen_ normaalisti ja tulosti "Hello, world". Toinen kutsu ei tuottanut tulostetta vaan havaitsin, että message-parametrin arvo oli 0x0, eli NULL. Tämä johti seuraavaksi ohjelman kaatumisen. Tämä siis varmisti, että ohjelman ongelma liittyi NULL-osoittimeen.
 
 <img width="931" height="140" alt="image" src="https://github.com/user-attachments/assets/0cf7e606-3053-422c-aac1-3a410311dae7" />
 <br>
@@ -139,6 +141,13 @@ Ensimmäinen _print_scrambled()_ -kutsu käsitteli _good_messagen_ normaalisti j
 <img width="803" height="194" alt="BAD_MESSAGE" src="https://github.com/user-attachments/assets/083f6586-30f9-4852-82c0-9b5ef8650259" />
 <br>
 
+Lisäsin vielä toisen breakpointin ennen ongelmallista _printf()_ kohtaa. Tutkin tulosteita good_messagen tulostuksen kohdalta josta oli helppo havaita, kuinka ohjelma eteni merkki kerrallaan.
+
+Kun edettiin toiseen kutsuun, huomattiin, että osoitin osoittaa osoitteeseen 0x0 (NULL) ja GDB kertoo ("No symbol "message" in current context") eli message-nimistä muuttujaa ole näkyvissä. 
+
+<img width="692" height="162" alt="image" src="https://github.com/user-attachments/assets/738ce103-c291-491b-b211-95b6ca393dca" />
+
+<br>
 
 #### Korjaaminen
 
