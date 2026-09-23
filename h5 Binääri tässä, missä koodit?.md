@@ -115,31 +115,30 @@ Ohjelma oli jaettu print_scrambled() -funktioon, joka käsittelee merkkijonoa ja
 - Pääohjelma, jossa luodaan kaksi muuttujaa: _good_message_ "Hello, world" ja _bad_message_ NULL.
 - ``char *`` tarkoittaa osoitinta merkkiin
    - _good_message_ kertoo, missä "Hello, world" sijaitsee muistissa
-   - _bad_message_ NULL tarkoittaa, että osoitin ei osoita mihinkään kelvolliseen kohtaan
+   - _bad_message_ NULL johtaa siihen, että osoitin ei osoita mihinkään kelvolliseen kohtaan
 
 <br>
 
 #### print_scrambled()
 
-- funktio, joka tulostaa joko _good_messagen_ tai _bad_messagen_.
-- ``printf("%c2, (*message)+1);`` 
-- - _bad_message_ oli NULL, joten sen tulostaminen aiheuttaa ongelman. 
+- funktio käsittelee sille annettua merkkiä yksi kerrallaan
+- ``printf("%c2, (*message)+1);`` hakee _message_ -osoittimen merkin ja lisää sen arvoon muuttujan **i** arvon (3)
+- do...while -silmukka jatkaa seuraavaan merkkiin aina niin kauan kunnes merkkijono loppuu (\0)
 
+Ongelma syntyy siis silloin, kun funktiolle annetaan _bad_message_ joka on NULL. NULL ei osoita mihinkään muistiosoitteeseen, joten kun ohjelma yrittää suorittaa ***message** eli lukea merkkiä muistista, se kohtaa virheellisen muistiosoitteeen ja ohjelma kaatuu.
 
 #### GNU Debugger tutkiminen
 
 Ensin asetin breakpointin _print_scrambled_ -funktioon ja käynnistin ohjelman.
 
-Ensimmäinen _print_scrambled()_ -kutsu tulosti tulosteen "Hello, world" normaalisti. 
-
-Toinen kutsu ei kuitenkaan tuottanut tulostetta vaan ohjelma kaatui. Tämä johtui siis siitä, että tulostettava _bad_message_ osoittaa NULL-osoitteeseen. do..while -loopin sisällä ohjelma yrittää hakea merkin kohdasta _*message_ mutta _message_ sisältää NULL-arvon. Tämä johtaa siihen, että ohjelma yrittää lukea muistia virheellisestä osoitteesta. Tällöin ohjelma kaatuu ennen kuin toinen viesti ehtii tulostua. 
-
+Ensimmäinen _print_scrambled()_ -kutsu käsitteli _good_messagen_ normaalisti ja tulosti "Hello, world". Toinen kutsu ei tuottanut tulostetta vaan aiheutti ohjelman kaatumisen. 
 
 <img width="931" height="140" alt="image" src="https://github.com/user-attachments/assets/0cf7e606-3053-422c-aac1-3a410311dae7" />
 <br>
 
 <img width="803" height="194" alt="BAD_MESSAGE" src="https://github.com/user-attachments/assets/083f6586-30f9-4852-82c0-9b5ef8650259" />
 <br>
+
 
 #### Korjaaminen
 
