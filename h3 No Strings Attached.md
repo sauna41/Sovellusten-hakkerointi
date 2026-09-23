@@ -30,6 +30,8 @@ Tämän perusteella kokeilin vielä, onnistuisiko merkkijonojen filtteröinti ni
 
 <img width="734" height="144" alt="image" src="https://github.com/user-attachments/assets/4f374dfe-f1c6-4a7a-8408-0fb5b97b7912" />
 
+``strings passtr | grep -iE 'pass|flag'``
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
