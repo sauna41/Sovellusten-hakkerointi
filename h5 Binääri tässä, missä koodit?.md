@@ -107,7 +107,8 @@ C-kieli ei ollut itselleni vahvin ohjelmointikieli, joten l채hdin ensin selvitt�
       print_scrambled(good_message);    // tulostetaan good_message ("Hello, world")
       print_scrambled(bad_message);    // yritet채채n k채sitell채 NULL-osoitinta = virhe
     }
-
+    
+    
 Ohjelma oli jaettu print_scrambled() -funktioon, joka k채sittelee merkkijonoa ja main() -funktioon, joka aloittaa ohjelman.
 
 #### main()
