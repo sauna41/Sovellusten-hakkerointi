@@ -269,7 +269,19 @@ Tämä asetti arvon, jonka jälkeen muistista löytyi
 
 Tuloste kertoi, että **anLTj4u8** oli merkkijono, jota ohjelma käytti salasana tarkastuksen lähtökohtana. Ohjelma siis otti vastaan käyttäjän syötteen, muutti sitä lisäämällä tai vähentämällä merkkijonon merkkien arvoja ASCII-taulukon mukaisesti ja vertasi lopputulosta tuohon merkkijonoon. 
 
-Muuttamalla tämän tietäen anLTj4u8 jokainen merkki saatiin salasanaksi **dgOMm-x1**. 
+
+    a + 3 = d
+    n - 7 = g
+    L + 3 = O
+    T - 7 = M
+    j + 3 = m
+    4 - 7 = -
+    i + 3 = x
+    8 - 7 = 1
+
+    = dgOMm-x1
+
+Lopputulemana salasanaksi saatiin **dgOMm-x1**. 
 
 <img width="713" height="115" alt="FLAG" src="https://github.com/user-attachments/assets/67201050-d157-4108-8733-627c1e1e40a5" />
 
