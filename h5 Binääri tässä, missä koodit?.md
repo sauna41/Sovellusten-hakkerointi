@@ -143,7 +143,7 @@ Kun jatkoin harjoitusten suorittamista myöhemmin, opin hyödyntämään luennol
 Ohjelman etenemistä oli helppo seurata "reaaliajassa" Debuggerin avulla. 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-### Lab3.zip - Tiedostossa on Nora Crackme -haasteita. Valitse yksi tiedosto ja yritä ratkaista binäärin salasana. Kirjoita tästä dokumentti, miten sait salasanan selville.
+### Lab3.zip - Nora Crackme -haasteita
 
 Olen dokumentoinut aiemmin ratkomiani Nora Crackme -haasteita aiemmissa tehtävissä. Ne ovat saatavilla linkin takaa:
 
