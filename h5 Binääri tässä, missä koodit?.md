@@ -53,14 +53,15 @@ Virhe löytyi for-loopin sisältä:
 
     > for (int i = 0; i <= size; i++) // <= tulisi olla pelkkä <
 
+Taulukon indeksit alkavat nollasta, joten koko taulukon koko on ``size - 1``. <= aiheuttaa sen, että silmukka suoritetaan vielä arvolla i == size, jolloin ohjelma käsittelee taulukon rajojen ulkopuolella olevaa kohtaa. Tämä saattaa johtaa puskuriylivuotoon tai muuhun ei-toivottuun toimintaan. 
 
-Nyt ``<=`` aiheutti tilanteen, jossa YLIVUOTO.
+#### Ohjelman korjaaminen
 
 Ongelmaan oli yksinkertainen ratkaisu: loin lähdekoodista kopion, jonne korjasin vertailuoperaattorin kuntoon. Lopuksi käänsin lähdekohdin ajettavaksi ohjelmaksi.
 
-    > cp buggy_program.c fixed_program.c
+    > cp buggy_program.c fixed_program.c    // kopiointi
     > micro fixed_program.c   // muokattiin lähdekoodin vertailuoperaattori
-    > gcc fixed_program.c -o fixed_program
+    > gcc fixed_program.c -o fixed_program    // korjatun lähdekoodin kääntäminen uudeksi ohjelmaksi
     
   
 <img width="1350" height="373" alt="BUGGY_TULOSTE" src="https://github.com/user-attachments/assets/7799bfcb-0afb-4880-b21f-bea159c5b719" />
@@ -79,6 +80,76 @@ ________________________________________________________________________________
 
 ### Lab1.zip - Harjoitellaan tunnilla itsenäisesti. Etsitään, miksi ohjelma kaatuu ja voidaanko se korjata.
 
+    
+
+Avasin jälleen ``gdb ./gdb_example1`` komennolla Debuggerin työhakemistosta ja aloin tutkimaan koodia.
+
+Ohjelma oli jaettu print_scrambled() -funktioon, joka käsittelee merkkijonoa ja main() -funktioon, joka aloittaa ohjelman.
+
+#### main()
+
+- Pääohjelma, jossa luodaan kaksi muuttujaa: _good_message_ "Hello, world" ja _bad_message_ NULL.
+- ``char *`` tarkoittaa osoitinta merkkiin
+   - _good_message_ kertoo, missä "Hello, world" sijaitsee muistissa
+   - _bad_message_ NULL tarkoittaa, että osoitin ei osoita mihinkään kelvolliseen kohtaan
+
+<br>
+
+#### print_scrambled()
+
+- funktio, joka tulostaa joko _good_messagen_ tai _bad_messagen_.
+- ``printf("%c2, (*message)+1);`` 
+- - _bad_message_ oli NULL, joten sen tulostaminen aiheuttaa ongelman. 
+
+
+#### GNU debugger tutkiminen
+
+Ensin asetin breakpointin _print_scrambled_ -funktioon ja käynnistin ohjelman.
+
+Ensimmäinen _print_scrambled()_ -kutsu tulosti tulosteen "Hello, world" normaalisti. 
+
+Toinen kutsu ei kuitenkaan tuottanut tulostetta vaan ohjelma kaatui. Tämä johtui siis siitä, että tulostettava _bad_message_ osoittaa NULL-osoitteeseen. do..while -loopin sisällä ohjelma yrittää hakea merkin kohdasta _*message_ mutta _message_ sisältää NULL-arvon. Tämä johtaa siihen, että ohjelma yrittää lukea muistia virheellisestä osoitteesta. Tällöin ohjelma kaatuu ennen kuin toinen viesti ehtii tulostua. 
+
+
+#### Korjaaminen
+
+Kun ongelmakohta oli löydetty, se oli helppo korjata. Lisäämällä ehto 
+
+    if (message == NULL) { 
+        return; 
+    } 
+ohjelma tarkastaa alussa, onko sille annettu NULL-osoitin. Jos on, niin funktio lopettaa toimintansa eikä yritä käsitellä epäkelpoa muistiosoitetta.  
+
+
+<img width="706" height="228" alt="2X PRINT MESSAGES" src="https://github.com/user-attachments/assets/c5b481f2-4903-44dc-8804-a75d9ac66dd1" />
+<br>
+
+
+Avasin jälleen ``gdb ./gdb_example1`` komennolla Debuggerin työhakemistosta ja aloin tutkimaan koodia.
+
+Ohjelma oli jaettu print_scrambled() -funktioon, joka käsittelee merkkijonoa ja main() -funktioon, joka aloittaa ohjelman.
+
+#### main()
+
+- Pääohjelma, jossa luodaan kaksi muuttujaa: _good_message_ "Hello, world" ja _bad_message_ NULL.
+- ``char *`` tarkoittaa osoitinta merkkiin
+   - _good_message_ kertoo, missä "Hello, world" sijaitsee muistissa
+   - _bad_message_ NULL tarkoittaa, että osoitin ei osoita mihinkään kelvolliseen kohtaan
+
+#### print_scrambled()
+
+- funktio, joka tulostaa joko _good_messagen_ tai _bad_messagen_.
+- _bad_message_ oli NULL, joten sen tulostaminen aiheuttaa ongelman. 
+
+
+Ensin asetin breakpointin _print_scrambled_ -funktioon ja ajoin ohjelman.
+
+Ensimmäinen _print_scrambled()_ -kutsu tulosti tulosteen "Hello, world" normaalisti. Toinen kutsu ei kuitenkaan tuottanut tulostetta vaan ohjelma kaatui. Tämä johtui siis siitä, että käsiteltävä _bad_message_ osoittaa NULL-osoitteeseen. do..while -loopin sisällä ohjelma yrittää hakea merkkiä kohdassa *message ennen kuin merkkiä ehditään tulostaa. 
+
+
+
+<img width="706" height="228" alt="2X PRINT MESSAGES" src="https://github.com/user-attachments/assets/c5b481f2-4903-44dc-8804-a75d9ac66dd1" />
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lab2.zip - kotitehtävä. Ohjelma on käännetty, mutta koodit ovat päässeet katoamaan. Tehtävänä on löytää ohjelman kysymä uusi salasana ja ohjelman tulostama lippu. 
@@ -88,15 +159,14 @@ ________________________________________________________________________________
 
 ### Kirjoita dokumentti siitä, miten sait nämä selville. Sekä mitä uutta opit GNU Debuggerista, että mitä et oppinut tunnilla
 
-GNU Debugger oli entuudestaan täysin tuntematon, joten kaikki opitut asiat luennolla tulivat uusina. Kun jatkoin harjoitusten suorittamista myöhemmin, opin hyödyntämään luennolla opittuja asioita sekä 
+GNU Debugger oli entuudestaan täysin tuntematon, joten kaikki opitut asiat luennolla tulivat uusina. Myös C oli kielenä vieras, joten sen tulkitsiminen vaati ajatustyötä. 
+
+Kun jatkoin harjoitusten suorittamista myöhemmin, opin hyödyntämään luennolla opittuja asioita sekä tutuistin itsenäisesti uusiin komentoihin. 
+
+Ohjelman etenemistä oli helppo seurata "reaaliajassa" Debuggerin avulla. 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lab3.zip - Tiedostossa on Nora Crackme -haasteita. Valitse yksi tiedosto ja yritä ratkaista binäärin salasana. Kirjoita tästä dokumentti, miten sait salasanan selville.
-
-
-________________________________________________________________________________________________________________________________________________________________________________________
-
-### Lab4.zip - Vapaaehtoinen tehtävä. Ratkaise tämän binäärin salasana ja kirjoita siitä dokumentaatio.
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
