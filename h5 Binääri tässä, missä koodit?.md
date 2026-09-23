@@ -171,7 +171,7 @@ Ennen kuin lähdin tutkimaan debuggeria, yritin kartoittaa mitä ohjelman sisäl
 
         nm ./passtr2o
 
-Tästä selvisi, että ohjelma sisältää ainakin _main, EaseAs & check paswword_ -funktiot. Myös niiden sijainnit muistissa olivat nähtävillä (_0000000001080_)
+Tästä selvisi, että ohjelma sisältää ainakin _main, EaseAs, check paswword & mAsdf3a_ -funktiot. Myös niiden sijainnit muistissa olivat nähtävillä (_0000000001080_)
  - main - pääfunktio
  - check_password - liittyy todennäköisesti salasanan tarkistamiseen
 
@@ -191,7 +191,7 @@ _check_password_ -funktio oli löydetty, joten lähdin pilkkomaan sitä pienempi
 <img width="938" height="467" alt="DISASSEMBLE" src="https://github.com/user-attachments/assets/14182389-6d2d-4ea3-8565-1fbccd64a2de" />
 <br>
 
-_check_password_ funktio sisältä löytyi ``XOR %eax, %eax`` sekä ``ret``. Pienellä selvittelyllä tulkitsin tämän tarkoittamaan käytännössä XOR 0 = 0, eli XOR asettaa arvoksi 0 ja ``ret`` eli return palauttaa. Käytännössä return 0;. Hypoteesi tässä kohtaa oli, että salasana tarkistetaan muualla ja tämä funktio vain palauttaa tietyissä oloissa 0. 
+_check_password_ funktio sisältä löytyi ``XOR %eax, %eax`` sekä ``ret``. Pienellä selvittelyllä tulkitsin tämän tarkoittamaan käytännössä XOR 0 = 0, eli XOR asettaa EAX-rekistgerin arvoksi 0 ja ``ret`` eli return palauttaa funktion kutsujalle. Käytännössä siis return 0;. Hypoteesi tässä kohtaa oli, että salasana tarkistetaan muualla ja tämä funktio vain palauttaa tietyissä oloissa 0. 
 <br>
 
 #### main
@@ -212,7 +212,9 @@ Tarkastin, millä formaatilla ``scanf`` lukee syötteen:
 
 Komento x/s eli _examine_ oli siis käytännössä, että _"tutki muistia osoitteesta 0x2019 ja lue sieltä merkkijono."_ Osoite 0x2019 saatiin aiemmasta main() -funktion tutkimisesta, jossa ohjelma lisää ``lea    0xf2d(%rip),rdi        # 0x2019`` rekisteriin juuri tuon osoitteen.
 
-Tulos kertoi, että merkkijono luetaan käyttäjän syötteestä (%s) ja että se on enintään 19 merkkiä pitkä. Tiedossa oli, että main() -funktio kutsuu <mAsdf3a> -funktiota heti syötteen lukemisen jälkeen, joten siirryin tutkimaan sitä tarkemmin
+Tulos kertoi, että merkkijono luetaan käyttäjän syötteestä (%s) ja että se on enintään 19 merkkiä pitkä. Tiedossa oli, että main() -funktio kutsuu <mAsdf3a> -funktiota heti syötteen lukemisen jälkeen, joten siirryin tutkimaan sitä tarkemmin.
+
+
 
 #### mAsdf3a
 
@@ -222,11 +224,56 @@ Tulos kertoi, että merkkijono luetaan käyttäjän syötteestä (%s) ja että s
 <br>
 
 Funktion sisältä löytyi ``strlen, comp, jne``, eli uskoin vahvasti, että tämä on se funktio, jossa itse vertailu suoritetaan
-    - strlen = merkkijonon pituus
-    - comp = compare
+    - strlen = merkkijonon pituden selvittelyä
+    - comp = vertailee arvoja
     - jne = jump if not equal
 
-Lopussa ``mov`` palauttaa arvon 1, jos kaikki tarkistukset menivät läpi. 
+Funktion alussa ``strlen`` -funktiota käytetään pariin otteeseen. Tämän perusteella vertailtavien merkkijonojen pituudet vertaillaan näissä kohdissa. Tämän jälkeen se alkaa käymään merkki kerrallaan käymään merkkijonon merkkejä läpi. 
+
+Tässä kohtaa tiesin entuudestaan, että kyseinen ohjelma muuttaa merkkijonoa ennen vertailua. Tämän perusteella osasin päätellä, että debuggerin rivit
+
+    test al,0x1
+    je 0x1299
+    sub edx,0x7
+    ... 
+    add edx,0x3
+
+toteuttavat todennäköisesti tämän merkkijonojen muuntamisen. Näistä oli pääteltävissä, että merkin sijainnin perusteella siihen joko lisättiin 3 (add) tai vähennettiin 7 (sub).
+
+Lopussa ``mov`` palauttaa EAX-rekisterin arvoksi 1, jos kaikki tarkistukset menivät läpi. Jos eivät, palautus on -1. 
+<br>
+
+<img width="698" height="104" alt="RATKAISU" src="https://github.com/user-attachments/assets/0484e83d-3aec-494f-bdd6-2286b8e78635" />
+<br>
+
+#### Merkkijonon selvittäminen
+
+Viimeisenä piti selvittää, mitä merkkijonoa ``mAsdf3a`` -funktio käyttää vertailussa käyttäjän syötteen suhteen.
+
+main() -funktiosta löytyi käsky
+
+    movabs $0x3875346a544c6e61,%rax
+
+jossa ohjelma tallentaa tämän arvon myöhemmin pinoon. Pysäytin ohjelman tähän kohtaan ja GDB:n avulla oli mahdollista katsoa, miltä kyseinen arvo näytti merkkijonona. Asetin siis breakpointin juuri ennen arvon tallentamista 
+
+    break *main+83
+    run
+
+Ja suoritin assembler-käskyn ``nexti``. 
+    - next vs nexti: next suorittaa yhden lähdekoodirivin, nexti suorittaa yhden konekielikäskyn
+
+Tämä asetti arvon, jonka jälkeen muistista löytyi
+
+<img width="518" height="127" alt="X/S RSP+1" src="https://github.com/user-attachments/assets/889836d7-1025-44f9-9d32-18ff2c7bc028" />
+<br>
+
+Tuloste kertoi, että **anLTj4u8** oli merkkijono, jota ohjelma käytti salasana tarkastuksen lähtökohtana. Ohjelma siis otti vastaan käyttäjän syötteen, muutti sitä lisäämällä tai vähentämällä merkkijonon merkkien arvoja ASCII-taulukon mukaisesti ja vertasi lopputulosta tuohon merkkijonoon. 
+
+Muuttamalla tämän tietäen anLTj4u8 jokainen merkki saatiin salasanaksi **dgOMm-x1**. 
+
+<img width="713" height="115" alt="FLAG" src="https://github.com/user-attachments/assets/67201050-d157-4108-8733-627c1e1e40a5" />
+
+
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 
