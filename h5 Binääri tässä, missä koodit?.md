@@ -72,6 +72,7 @@ Ongelmaan oli yksinkertainen ratkaisu: loin lähdekoodista kopion, jonne korjasi
 
 Rikkinäisen _buggy_program_ & korjatun _fixed_program_ tulosteet vierekkäin:
 <br>
+
 <img width="1719" height="288" alt="image" src="https://github.com/user-attachments/assets/7b48922a-b8e6-49de-8944-c6db3cd196d4" />
 
 
@@ -111,6 +112,11 @@ Ensimmäinen _print_scrambled()_ -kutsu tulosti tulosteen "Hello, world" normaal
 Toinen kutsu ei kuitenkaan tuottanut tulostetta vaan ohjelma kaatui. Tämä johtui siis siitä, että tulostettava _bad_message_ osoittaa NULL-osoitteeseen. do..while -loopin sisällä ohjelma yrittää hakea merkin kohdasta _*message_ mutta _message_ sisältää NULL-arvon. Tämä johtaa siihen, että ohjelma yrittää lukea muistia virheellisestä osoitteesta. Tällöin ohjelma kaatuu ennen kuin toinen viesti ehtii tulostua. 
 
 
+<img width="938" height="84" alt="GOOD MESSAGE" src="https://github.com/user-attachments/assets/6fb3efc2-ced4-4b28-9bad-15557dcc1dc2" />
+<br>
+<img width="803" height="194" alt="BAD MESSAGE" src="https://github.com/user-attachments/assets/083f6586-30f9-4852-82c0-9b5ef8650259" />
+
+
 #### Korjaaminen
 
 Kun ongelmakohta oli löydetty, se oli helppo korjata. Lisäämällä ehto 
@@ -121,7 +127,7 @@ Kun ongelmakohta oli löydetty, se oli helppo korjata. Lisäämällä ehto
 ohjelma tarkastaa alussa, onko sille annettu NULL-osoitin. Jos on, niin funktio lopettaa toimintansa eikä yritä käsitellä epäkelpoa muistiosoitetta.  
 
 
-<img width="706" height="228" alt="2X PRINT MESSAGES" src="https://github.com/user-attachments/assets/c5b481f2-4903-44dc-8804-a75d9ac66dd1" />
+
 <br>
 
 
