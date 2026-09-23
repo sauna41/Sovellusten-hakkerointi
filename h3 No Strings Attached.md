@@ -28,7 +28,7 @@ Oikea salasana ja lippui löytyivätkin yllättävän helposti. Tehtävänannon 
 
 Tämän perusteella kokeilin vielä, onnistuisiko merkkijonojen filtteröinti niin, että kaikkien merkkien sijaan vain haluttu tieto saataisiin ongittua esiin:
 
-<img width="756" height="156" alt="VirtualBoxVM_GalVQCMq6I" src="https://github.com/user-attachments/assets/8ee8a431-c6d6-44fa-8fbf-ba8e0dca8a6b" />
+<img width="734" height="144" alt="image" src="https://github.com/user-attachments/assets/4f374dfe-f1c6-4a7a-8408-0fb5b97b7912" />
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
