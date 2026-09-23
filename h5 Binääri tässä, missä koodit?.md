@@ -172,13 +172,11 @@ GNU Debugger oli entuudestaan täysin tuntematon, joten kaikki opitut asiat luen
 
 Labraharjoitusten aikana opin hyödyntämään luennolla opittuja komentoja ja tutuistuin myös itsenäisesti GNU debuggerin muihin toimintoihin. 
 
-Opin esimerkiksi ymmärtämään sekä asettamaan breakpointteja, suorittamaan ohjelmaa vaihe vaiheelta ja analysoimaan ohjelman toimintaa näissä vaiheissa. Myös muuttujien ja muistiosoitteiden arvoja. 
+Opin esimerkiksi ymmärtämään sekä asettamaan breakpointteja, suorittamaan ohjelmaa vaihe vaiheelta ja analysoimaan ohjelman toimintaa näissä vaiheissa. Myös muuttujien ja muistiosoitteiden arvoja oli mahdollista seurata ohjelman suorituksen edetessä.
 
-Ohjelman etenemistä oli helppo seurata "reaaliajassa". Oli hyödyllistä kun ohjelman pystyi pysäyttämään haluttuun kohtaan, jolloin sen hetkistä tilannetta pystyi tutkimaan tarkemmin tai tulostamaan sen hetkisen tulosteen. 
+Ohjelman etenemistä oli helppo seurata "reaaliajassa". Oli hyödyllistä kun ohjelman pystyi pysäyttämään haluttuun kohtaan, jolloin sen hetkistä tilannetta pystyi tutkimaan tarkemmin tai tulostamaan sen hetkiset ``print messaget``. Lähdekoodin ja debuggerin yhdistäminen tukivat toisiaan, sillä vaikka ongelmakohtaa ei tajuaisi suoraan toisesta, pystyi niitä tutkimaan ristiin ja tutkimaan hypoteesejä. 
 
-Opin harjoitusten aikana yhdistelemään debuggerin ja lähdekooodin lukemisen. 
-
-Seuraava askel varmaan olisi osata hyödyntää debuggeria myös ilman lähdekoodia. 
+Tehtävissä oli saatavilla lähdekoodit mutta harjoittelulla GDB:ää voisi todennäköisesti hyödyntää myös ilman sitä. Toki se vaatisi konekäskyjen ja rekisterien opettelua mutta tässä voisi todennäköisesti hyödyntää esimerkiksi Ghidraa ja sen tuottamaa pseudokoodia. 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
