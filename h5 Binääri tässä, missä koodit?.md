@@ -166,6 +166,15 @@ ________________________________________________________________________________
 Olen dokumentoinut ratkaisun toisen tehtävän yhteydessä. Linkki dokumentointiin löytyy [täältä](https://github.com/sauna41/Sovellusten-hakkerointi/blob/main/h3%20No%20Strings%20Attached.md#a-strings-download-ezbin-challengeszip-run-passtr-find-the-correct-password-using-strings-also-find-the-flag-preferably-without-looking-at-the-source-if-you-can)
 ________________________________________________________________________________________________________________________________________________________________________________________
 
+
+### Lab3.zip - Nora Crackme -haasteita
+
+Olen dokumentoinut aiemmin ratkomiani Nora Crackme -haasteita aiemmissa tehtävissä. Ne ovat saatavilla linkin takaa:
+
+[Nora Crackme -haasteita](https://github.com/sauna41/Sovellusten-hakkerointi/blob/main/h4%20Some%20Disassembly%20Required.md#d-nora-crackme-compile-to-binaries-tindall-2023-noracodes--crackmes-read-readmemd-dont-look-at-the-source-code-unless-you-need-training-wheels-in-these-tasks-binaries-are-reverse-engineered-binaries-are-not-modified-because-otherwise-the-solution-to-every-task-would-be-to-change-the-return-value-to-return-0)
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
 ### Kirjoita dokumentti siitä, miten sait nämä selville. Sekä mitä uutta opit GNU Debuggerista, että mitä et oppinut tunnilla
 
 GNU Debugger oli entuudestaan täysin tuntematon, joten kaikki opitut asiat luennolla tulivat uusina. Myös C oli kielenä vieras, joten sen tulkitsiminen vaati ajatustyötä. Ensimmäisen luennon aikan opin kuintekin Debuggerin peruskäytön ja miten ohjelman suoritusta voi tutkia vaiheittain.
@@ -180,12 +189,6 @@ Tehtävissä oli saatavilla lähdekoodit mutta harjoittelulla GDB:ää voisi tod
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-### Lab3.zip - Nora Crackme -haasteita
-
-Olen dokumentoinut aiemmin ratkomiani Nora Crackme -haasteita aiemmissa tehtävissä. Ne ovat saatavilla linkin takaa:
-
-[Nora Crackme -haasteita](https://github.com/sauna41/Sovellusten-hakkerointi/blob/main/h4%20Some%20Disassembly%20Required.md#d-nora-crackme-compile-to-binaries-tindall-2023-noracodes--crackmes-read-readmemd-dont-look-at-the-source-code-unless-you-need-training-wheels-in-these-tasks-binaries-are-reverse-engineered-binaries-are-not-modified-because-otherwise-the-solution-to-every-task-would-be-to-change-the-return-value-to-return-0)
-________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Lähteet
 
