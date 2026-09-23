@@ -59,7 +59,8 @@ Verrattiin tulostuksia:
 
 Alkuperäinen ohjelma palautti salasanan merkkijonona kun taas muokattu ohjelma ei tulostanut mitään, joten salasanan esitystapa oli onnistuneesti obfuskoitu.
 
-<br> <img width="882" height="100" alt="FIXED PROOF" src="https://github.com/user-attachments/assets/fc5a576a-32f3-4357-b9ca-cfdc295d9a64" /> <br>
+<br> 
+<img width="882" height="100" alt="FIXED PROOF" src="https://github.com/user-attachments/assets/fc5a576a-32f3-4357-b9ca-cfdc295d9a64" /> <br>
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
