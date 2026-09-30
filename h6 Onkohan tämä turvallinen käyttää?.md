@@ -117,12 +117,14 @@ Kaikki ajettavat tiedostot voitiin listata komennolla ``find rootfs-image/rootfs
 
 Kiinnostavin tulos oli ``rootfs-image/rootfs/bin/main``, sillä se todennäköisesti sisältäisi keskeistä binääriä liittyen kameran toiminnallisuuteen, käyttäjähallintaan ja kirjautumiseen. Myös ``rootfs-image/rootfs/bin/gdbserver`` saattaisi olla hyödyllinen dynaamisessa tutkimisessa.
 
+<br>
+<br>
 
 
 ### Analyysi ja rootin löytäminen
 
 
-
+_Rootin löytäminen on vielä kesken ja päivitin raportin sen osalta sekä kokonaisvaltaisen pohdinnan tehtävästä sen löydettyäni. 30.9.2026._
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
