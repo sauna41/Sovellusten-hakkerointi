@@ -67,9 +67,13 @@ Tehtävänannon kannalta merkittävin löytö oli
                                created: 2025-03-13 03:15:05
 
 
+sillä tiedostojärjestelmä saattaisi sisältää hakemistoja, joissa root-salasana voisi piileskellä. 
+<br>
+
+
 ### Rootfs irrottaminen dump-tiedosta
 
-SquashFS irrotettiin dumpista 
+SquashFS irrotettiin dumpista komennolla
 
     dd if=dump-tapo-c200v3-1.4.2.bin \
     of=rootfs-dump/rootfs.squashfs \
