@@ -18,6 +18,7 @@ _Kirjoita tutkimuksestasi raportti, josta selviää, mitä löysit ja miten löy
 
 Latasin ensimmäisenä kurssimateriaaleina annetut tiedostot: Tapo C200 v3 dump filen, Tapo v3 firmware binäärin sekä TP-link Decrypt -työkalun.
 
+________________________________________________________________________________________________________________________________________________________________________________________
 
 ### Firmware kuvan purkaminen
 
@@ -88,6 +89,7 @@ jonka tuloksena oli eriytetty SquashFS-tiedostojärjestelmä. Se purettiin viel�
 
 Purkamalla saatiin rootFS:stä tiedosto- ja hakemistorakenne.
 
+________________________________________________________________________________________________________________________________________________________________________________________
 
 
 ### Rootfs irrottaminen image-tiedosta
@@ -103,6 +105,7 @@ Firmware-kuvasta löydetty SquashFS erotettiin samalla tavalla kuin dumpista lö
 
 Myös firmware-kuvasta oli täten saatu erillinen purettu rootfs hakemistonsa.
 
+________________________________________________________________________________________________________________________________________________________________________________________
 
 
 ### Firmwaren sovellukset
@@ -119,6 +122,8 @@ Kiinnostavin tulos oli ``rootfs-image/rootfs/bin/main``, sillä se todennäköis
 
 <br>
 <br>
+
+________________________________________________________________________________________________________________________________________________________________________________________
 
 
 ### Analyysi ja rootin löytäminen
