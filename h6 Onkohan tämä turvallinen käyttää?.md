@@ -16,22 +16,22 @@ _Kirjoita tutkimuksestasi raportti, josta selviää, mitä löysit ja miten löy
 <br>
 <br>
 
-Latasin kurssimateriaaleina annetut Tapo C200 v3 Dump filen & TP-link Decrypt -tiedostot.
+Latasin ensimmäisenä kurssimateriaaleina annetut tiedostot: Tapo C200 v3 dump filen, Tapo v3 firmware binäärin sekä TP-link Decrypt -työkalun.
 
-
-<img width="824" height="582" alt="image" src="https://github.com/user-attachments/assets/33603050-8a6b-4a1f-be4d-8a9ffc17b549" />
-<br>
 
 ### Firmware kuvan purkaminen
 
 Latasin kurssimateriaalin ohjeiden mukaan Tapo V3 firmware binäärin:
 
 
-    aws s3 cp s3://download.tplinkcloud.com/firmware/Tapo_C200v3_en_1.4.2_Build_250313_Rel.40499n_up_boot-signed_1747894968535.bin Tapo_C200v4_en_1.4.2.bin --no-sign-request
+    aws s3 cp s3://download.tplinkcloud.com/firmware/
+    Tapo_C200v3_en_1.4.2_Build_250313_Rel.40499n_up_boot-signed_1747894968535.bin
+    Tapo_C200v4_en_1.4.2.bin --no-sign-request
 
-Siirsin sen TP-link Decryptin kanssa samaan hakemistoon ja ajoin ``./bin/tp-link-decrypt Tapo_C200v4_en_1.4.2.bin``
+Siirsin tiedostot TP-link Decryptin kanssa samaan hakemistoon ja ajoin ``./bin/tp-link-decrypt Tapo_C200v4_en_1.4.2.bin``
 
 <img width="580" height="354" alt="image" src="https://github.com/user-attachments/assets/e222cab6-92b8-4e09-8a4b-728d7e488b6e" />
+<br>
 <br>
 
 Työkalu tunnisti firmware-kuvan ja löysi myös headerin sekä RSA-2048 salausmenetelmän. Kuvan verifiointi onnistui.
@@ -43,13 +43,21 @@ Purettu firmware kirjoitettiin tiedostoon ``Tapo_C200v4_en_1.4.2.bin.dec`` josta
 
 <img width="844" height="324" alt="image" src="https://github.com/user-attachments/assets/05a17959-b1ec-490a-9d83-c11b17cdd9ae" />
 <br>
+<br>
 
 
 Seuraavaksi purettu firmware analysoitiin ``binwalk`` työkalulla:
 
     binwalk Tapo_C200v4_en_1.4.2.bin.dec
 
-Analyysi paljasti useita löytöjä, kuten Linux-kernelin, LZO-, XZ & LZMA-pakattua dataa sekä SquashFS-tiedostojärjestelmän. Tehtävänannon kannalta merkittävin löytö oli 
+Analyysi paljasti useita löytöjä, kuten Linux-kernelin, LZO-, XZ & LZMA-pakattua dataa sekä SquashFS-tiedostojärjestelmän. Myös prosessori (MIPS) selvisi.
+
+<img width="1123" height="264" alt="image" src="https://github.com/user-attachments/assets/46984a68-100c-434b-81a3-4ef369a92bba" />
+<br>
+<br>
+
+
+Tehtävänannon kannalta merkittävin löytö oli 
 
 
       4063744     0x3E0200     Squashfs filesystem, 
