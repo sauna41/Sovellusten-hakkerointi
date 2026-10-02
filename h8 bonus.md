@@ -85,13 +85,148 @@ Optional bonus: Cryptopals. Crypto Challenge Set 1. This can be done as a bonus 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-### h4 Some Disassembly Required
+## h4 Some Disassembly Required
+
+_h4: [Some Disassembly Required -raportissani](https://github.com/sauna41/Sovellusten-hakkerointi/blob/main/h4%20Some%20Disassembly%20Required.md) on aiempaa dokumentointia crackme01 & crackme02 haasteista_
 
 
-Optional: And beyond. Crackme01 has multiple solutions. How many can you find? Why?
-h) Optional: Unsolicited. Crackme02 has two solutions. Can you find both?
-i) Optional, slightly more challenging: A ray. Nora crackme02e. Solve the binary.
+### And beyond. Crackme01 has multiple solutions. How many can you find? Why?
+
+Tehtävänanto vihjaa, että jostain syystä ratkaisuja on useita. Tutkin ohjelmaa tarkemmin Ghidrassa. Merkkijonon vertailu tapahtui seuraavalla tavalla:
+
+
+<img width="823" height="761" alt="STRCMP 9" src="https://github.com/user-attachments/assets/8f244ce1-a11f-41bf-bf86-91caa88c1573" />
+
+_Vertailu ghidrassa_
+
+Pseudokoodi analysoituna:
+
+    iVar1 = strncmp(__s1,"password1",9);    // lue käyttäjän syöte, vertaa "password1" merkkijonon ensimmäiseen yhdeksään merkkiin
+    if (iVar1 == 0) {    // jos salasanasyöte palauttaa 0
+      printf("Yes, %s is correct!\n",__s1);    // syötetty salasana oli oikein
+
+Ohjelman virhe on kohdassa ``strncmp(__s1,"password1",9);``: se tarkistaa, onko käyttäjän syötteessä oikean salasanan "_password1_" ensimmäiset yhdeksän merkkiä, ei salasanan pituutta. Jos tämä on totta, siirrytään tulostamaan, että salasana oikein. Se ei kuitenkaan tarkista mahdollisia merkkejä yhdeksännen jälkeen. Tämä johtaa tilanteeseen, jossa käyttäjä voi syöttää rajattomasti merkkejä sillä loppuosaa ei tarkasteta ollenkaan:
+
+
+<img width="759" height="228" alt=">9 MERKKIÄ PASSU" src="https://github.com/user-attachments/assets/18ca36e5-5e1f-43dc-bce5-0b1be441e0da" />
+_Rajattomasti oikeita salasanoja_
+
+"Oikeita" salasanoja on siis käytännössä rajaton määrä.
+
+<br>
+<br>
+
+
+### Optional: Unsolicited. Crackme02 has two solutions. Can you find both?
+
+Löysin haasteeseen yhden ratkaisun aiemmassa dokumentaatiossani ja nyt oli aika etsiä se toinen.
+
+Jälleen pseudokoodi auki ghidrassa ja tutkimaan. Tässä vaiheessa ghidra ja sen esittämä koodi oli jo jokseenkin tutumpaa, joten pseudokoodia oli helpompi analysoida. Melko nopeasti havaitsin kiinnostavia rivejä:
+
+<img width="513" height="712" alt="image" src="https://github.com/user-attachments/assets/37bf7c27-c094-41fb-bc2c-f21a9c02566d" />
+
+_ghidran pseudokoodia_
+<br>
+
+
+Huomionarvoisia olivat seuraavat rivit:
+
+        if (*pcVar4 == '\0') break;    // jos syöte on tyhjä, silmukka keskeytyy ennen yhdenkään merkin vertailua ja ohjelma jatkaa eteenpäin palauttaen 0. 
+        
+                    ↓    
+                    
+    printf("Yes, %s is correct!\n",pcVar1);    // tulosta käyttäjän syöte ja kerro salasanan olevan oikein
+
+
+Tämä tarkoitti, että jos käyttäjä syöttää tyhjän merkkijonon ``""``, silmukka katkeaa ja hyppää eteenpäin tulostukseen:
+
+
+<img width="539" height="79" alt="TYHJÄ VASTAUS" src="https://github.com/user-attachments/assets/65744bd9-8405-4565-b10f-e4081b2e0fab" />
+<br>
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________
+
+
+### slightly more challenging: A ray. Nora crackme02e. Solve the binary.
+
+Ghidraan auki: 
+
+<img width="592" height="713" alt="PSEUDO MAIN" src="https://github.com/user-attachments/assets/8e0e60d4-5ec5-4fdf-b5b8-cdeca3059a2c" />
+_main-lohko ghidrassa_
+<br>
+
+Pseukoodin analysointi:
+
+     undefined8 main(int param_1,long param_2)    // pääfunktio: param_1 on annettujen argumenttien määrä, long_param2 sisältää argumentit
+
+    {
+      char *pcVar1;    // käyttäjän syöte
+      char cVar2;    // odotettu merkki
+      undefined8 uVar3;    // lopullinen arvo
+      char *pcVar4;    // osoittaa käyttäjän syötteen nykyiseen merkkiin
+      char *pcVar5;    // osoittaa vertailun nykyisen merkkiin
+      
+      if (param_1 == 2) {    // tarkastus, että käyttäjä syöttää jotain
+        pcVar1 = *(char **)(param_2 + 8);    // haetaan käyttäjän ensimmäinen argumentti
+        pcVar5 = "uvmnpoi";    // asetetaan osoitin merkkijonoon "uvmnpoi"
+        cVar2 = 'y';    // ensimmäinen odotettu vertailumerkki on "y"
+        pcVar4 = pcVar1;    // osoitin käyttäjän ensimmäiseen merkkiin
+        do {    // silmukan käynnistys
+          if (*pcVar4 == '\0') break;    // tarkistetaan, että syöte on loppunut
+          if (cVar2 + -2 != (int)*pcVar4) {    // otetaan odotettu merkki (y) ja vähennetään sen ASCII-arvosta 2 (w)
+            printf("No, %s is not correct.\n",pcVar1);    // jos väärä syöte, tulostetaan
+            return 1;    // palautetaan 1
+          }
+          cVar2 = *pcVar5;    // jos ensimmäinen merkki on oikea, cVar2:ksi otetaan pcVar5 arvo
+          pcVar4 = pcVar4 + 1;    // siirrytään käyttäjän syötettä eteenpäin
+          pcVar5 = pcVar5 + 1;    // siirrytään vertailumerkissä eteenpäin
+        } while (cVar2 != '\0');    // jatketaan niin kauan että syöte on käsitelty
+        printf("Yes, %s is correct!\n",pcVar1);    // tulostetaan, että syöte on oikein
+        uVar3 = 0;    // palautusarvo 0
+      }
+      else { 
+        puts("Need exactly one argument.");    // jos argumentteja != 1, virheilmoitus
+        uVar3 = 0xffffffff;
+      }
+      return uVar3;    // palautetaan lopullinen exit-status
+
+
+Ohjelman logiikka on siis vähentää jokaisesta odotetusta merkistä ASCII-arvo 2. Ohjelma käy näin kaikki syötteen merkit salasanan pituudelta. Ghidrasta löytyi merkkijono "uvmnpoi", josta oli helppo laskea ASCII-arvoja:
+
+y - 2 = w
+u - 2 = s
+v - 2 = t
+m - 2 = k
+n - 2 = l
+p - 2 = n
+o - 2 = m
+i - 2 = g
+
+= **wstklnmg**
+
+<img width="547" height="78" alt="password found" src="https://github.com/user-attachments/assets/1c82fa5f-10b3-4e69-9e8a-e77294edbe80" />
+_salasana löytyi_
+<br>
+
+Myös "tyhjä" syöte käyttäjältä toimi, samalla logiikalla kuin edellisessä tehtävässä.
+
+<img width="412" height="82" alt="image" src="https://github.com/user-attachments/assets/bf02c5a2-d930-4399-b4ef-24ba6ee0c35e" />
+_"" toimi myös_
+
+
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+### Lähteet
+
+
+
+
+
+
+
+
+
 
 
