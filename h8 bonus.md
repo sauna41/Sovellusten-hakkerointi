@@ -23,7 +23,7 @@ ________________________________________________________________________________
 
 Labraharjoituksessa oli tehtävä saada näkyviin tuotteita, joita sivuston ei pitäisi näyttää käyttäjälle käyttäen SQL injektiota. Labra kertoi, että SQL-tiedustelu kulki seuraavasti: ``SELECT * FROM products WHERE category = 'Gifts' AND released = 1``.
 
-Kun sivustoa tutki kategorioittain muuttui URL-osoite sen mukaan: esimerkiksi "Gifts" -kategoria tuotti URLiksi _https://0add00950424bc23803c8ac5005d00a9.web-security-academy.net/filter?category=Gifts_. Tällöin esillä oli vain Gifts-kategorian julkaistut tuotteet (3). Nähtävillä oli siis kyseisen kategorian tuotteet, joiden release-status oli 1. 
+Kun sivustoa tutki kategorioittain muuttui URL-osoite sen mukaan: esimerkiksi "Gifts" -kategoria tuotti URLiksi ``https://0add00950424bc23803c8ac5005d00a9.web-security-academy.net/filter?category=Gifts``. Tällöin esillä oli vain Gifts-kategorian julkaistut tuotteet (3). Nähtävillä oli siis kyseisen kategorian tuotteet, joiden release-status oli 1. 
 
 <img width="1094" height="516" alt="GIFTS" src="https://github.com/user-attachments/assets/2706b57a-da6c-4426-b889-16ea66b1e2f3" />
 
