@@ -276,6 +276,11 @@ Ghidraa hetken tuijoteltuani ja ``std::`` merkintöjä seuratessa huomasin myös
 _Login successful_
 <br>
 
+#### Ajatuksia
+
+
+Omat taitoni C:n parissa eivät riittäneet ymmärtämään koodia kokonaisvaltaisesti. Onnistuin silti päättelemään palasia sieltä täältä, yhdistelemään niitä yhteen eri tavoin ja lopulta korkkaamaan salasanan. Tämä osoitti, että myös aloittelijan taidoilla pystyy loogisesti päättelemällä ratkomaan asioita vaikka tekninen tietotaito ei olisikaan vielä toivotulla tasolla. 
+
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
