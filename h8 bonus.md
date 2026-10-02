@@ -153,6 +153,7 @@ ________________________________________________________________________________
 Ghidraan auki: 
 
 <img width="592" height="713" alt="PSEUDO MAIN" src="https://github.com/user-attachments/assets/8e0e60d4-5ec5-4fdf-b5b8-cdeca3059a2c" />
+
 _main-lohko ghidrassa_
 <br>
 
@@ -206,14 +207,16 @@ i - 2 = g
 = **wstklnmg**
 
 <img width="547" height="78" alt="password found" src="https://github.com/user-attachments/assets/1c82fa5f-10b3-4e69-9e8a-e77294edbe80" />
+
 _salasana löytyi_
 <br>
 
 Myös "tyhjä" syöte käyttäjältä toimi, samalla logiikalla kuin edellisessä tehtävässä.
 
 <img width="412" height="82" alt="image" src="https://github.com/user-attachments/assets/bf02c5a2-d930-4399-b4ef-24ba6ee0c35e" />
-_"" toimi myös_
 
+_"" toimi myös_
+<br>
 
 
 ________________________________________________________________________________________________________________________________________________________________________________________
