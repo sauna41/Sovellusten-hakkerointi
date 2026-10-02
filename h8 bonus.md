@@ -195,14 +195,14 @@ Pseukoodin analysointi:
 
 Ohjelman logiikka on siis vähentää jokaisesta odotetusta merkistä ASCII-arvo 2. Ohjelma käy näin kaikki syötteen merkit salasanan pituudelta. Ghidrasta löytyi merkkijono "uvmnpoi", josta oli helppo laskea ASCII-arvoja:
 
-y - 2 = w
-u - 2 = s
-v - 2 = t
-m - 2 = k
-n - 2 = l
-p - 2 = n
-o - 2 = m
-i - 2 = g
+    y - 2 = w
+    u - 2 = s
+    v - 2 = t
+    m - 2 = k
+    n - 2 = l
+    p - 2 = n
+    o - 2 = m
+    i - 2 = g
 
 = **wstklnmg**
 
