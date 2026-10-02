@@ -219,6 +219,66 @@ Myös "tyhjä" syöte käyttäjältä toimi, samalla logiikalla kuin edellisess�
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
+## h5 Binääri tässä, missä koodit? 
+
+
+### Lab4.zip - Ratkaise tämän binäärin salasana ja kirjoita siitä dokumentaatio
+
+
+Lab4.zip saatiin ladattua kurssimateriaaleista ja purettua ``unzip lab4.zip`` komennolla. Tarkastelin ohjelmaa ensin "ulkoapäin":
+
+    file crackme
+    strings crackme
+
+Salasanaa ei vielä näillä kräkätty mutta ``strings crackme | grep check`` tuotti kuitenkin tulosta: "_GLOBAL__sub_I__Z13checkPasswordNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE". Tämä paljasti, että ohjelmasta löytyy checkPassord -symboli, mikä viittasi siihen, että ohjelmasta löytyisi salasanaa tarkistava funktio. Lähdin tämän perusteella etsimään lisää tietoa Ghidrasta.
+
+<img width="933" height="77" alt="GREPPAUS" src="https://github.com/user-attachments/assets/64b35ead-a9e7-44e6-b2dd-c645a62fd626" />
+
+_checkPassword löytö_
+<br>
+
+
+#### Ghidra analyysi
+
+main-lohkon sisältä löytyi pseudokoodia, jonka sisältöä en osannut vielä tulkita sen syvellisemmin.
+
+<img width="695" height="461" alt="image" src="https://github.com/user-attachments/assets/5bd101a3-5fd2-4ab0-9e01-470ec415e797" />
+
+_main-lohko & checkPassword_
+<br>
+
+Tuttu ``checkPassword`` kuitenkin löytyi, joten siirryin sen osoitteeseen tutkimaan tarkemmin. Siirtyminen kyseiseen funktioon kävi helposti tuplaklikkaamalla.
+
+
+<img width="693" height="587" alt="checkPasswordPSEUDO" src="https://github.com/user-attachments/assets/9b4b55de-42ad-47ca-aa77-e730d3f2ac7f" /> 
+
+_checkPassword funktion pseudokoodi_
+<br>
+
+Pseudokoodin tulkitseminen oli huomattavasti haastavampaa kuin aiemmissa tehtävissä. Selkeimmät osuudet olivat merkkijonot "dec" riviltä 21 sekä merkkijonot "k" ja "car" riveiltä 30 & 31.
+
+- Rivillä 21 "dec" merkkijono lisättiin vertailujonoon ensimmäisenä.
+- Rivien 30 ja 31 ``operator+=(local_68,"k")`` ja ``operator+=(local_68,"car");`` operaattorit selkeästi lisäsivät merkkejä (k ja car) 
+
+Nämä olivat oikeastaan ainoat ymmärtämäni vaiheet, mutta niillä pääsi alkuun. Kokeilin syöttää näiden yhdistelmää salasanaksi ohjelmaan:
+
+
+<img width="779" height="229" alt="yrityksiä" src="https://github.com/user-attachments/assets/ddae5c79-af2b-4fb0-929a-b8c03fb3005a" />
+
+_hakuammunta yrityksiä_
+<br>
+
+Ghidraa hetken tuijoteltuani ja ``std::`` merkintöjä seuratessa huomasin myös ``std::reverse<>`` osuuden. Reverse kääntää merkkijonon käänteiseen järjestykseen, jolloin **deccark = cracked**. Tämä tuskin oli sattumaa, joten kokeilin seuraavaksi _cracked_ -salasanaa.
+
+
+<img width="829" height="114" alt="CRACKED" src="https://github.com/user-attachments/assets/89b2d3b7-720b-47a7-bb9c-13129207f1c5" />
+
+_Login successful_
+<br>
+
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
 ### Lähteet
 
 
