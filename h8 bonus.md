@@ -214,8 +214,6 @@ _salasana löytyi_
 Myös "tyhjä" syöte käyttäjältä toimi, samalla logiikalla kuin edellisessä tehtävässä.
 
 <img width="412" height="82" alt="image" src="https://github.com/user-attachments/assets/bf02c5a2-d930-4399-b4ef-24ba6ee0c35e" />
-
-_"" toimi myös_
 <br>
 
 
