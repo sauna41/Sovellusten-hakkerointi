@@ -21,10 +21,11 @@ Kun sivustoa tutki kategorioittain muuttui URL-osoite sen mukaan: esimerkiksi "G
 <img width="1094" height="516" alt="GIFTS" src="https://github.com/user-attachments/assets/2706b57a-da6c-4426-b889-16ea66b1e2f3" />
 <br>
 
+
 SQL-injektio suoritettiin juurikin URL-kenttään: muokattiin URLin ``category=Gifts`` osa muotoon ``category=' OR 1=1--``. 
-    - hipsukka (') sulkee alkuperäisen merkkijonon 
-    - ``OR 1=1`` lisää ehdon, joka on aina tosi (1 on aina 1)
-    - kaksi viivaa ``--`` aloittaa SQL-kommentin --> ``AND RELEASED = 1`` muuttuu kommentiksi eikä ehtoa tarkasteta
+- hipsukka (') sulkee alkuperäisen merkkijonon
+- ``OR 1=1`` lisää ehdon, joka on aina tosi (1 on aina 1)
+- kaksi viivaa ``--`` aloittaa SQL-kommentin --> ``AND RELEASED = 1`` muuttuu kommentiksi eikä ehtoa tarkasteta
 
 Injektio johtaa siihen, että _kaikki_ tuotteet täyttävät WHERE-ehdon: 
 
