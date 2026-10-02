@@ -10,9 +10,16 @@ _Tämä raportti on osa Haaga-Helian Sovellusten hakkerointi- ja haavoittuvuudet
 
 ________________________________________________________________________________________________________________________________________________________________________________________
 
-### h2
 
-#### Solve Portswigger Academy's "Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data".
+# h8: BONUS
+
+Tähän raporttiin on kerätty kaikki vapaaehtoiset tehtävät kotitehtävistä h1-h7.
+
+________________________________________________________________________________________________________________________________________________________________________________________
+
+## h2
+
+### Solve Portswigger Academy's "Lab: SQL injection vulnerability in WHERE clause allowing retrieval of hidden data".
 
 Labraharjoituksessa oli tehtävä saada näkyviin tuotteita, joita sivuston ei pitäisi näyttää käyttäjälle käyttäen SQL injektiota. Labra kertoi, että SQL-tiedustelu kulki seuraavasti: ``SELECT * FROM products WHERE category = 'Gifts' AND released = 1``.
 
@@ -42,7 +49,10 @@ Injektio johtaa siihen, että _kaikki_ tuotteet täyttävät WHERE-ehdon:
 _kaikki tuotteet näkyvissä_
 <br>
 
-#### Solve Portswigger Academy's "Lab: SQL injection vulnerability allowing login bypass"
+________________________________________________________________________________________________________________________________________________________________________________________
+
+
+### Solve Portswigger Academy's "Lab: SQL injection vulnerability allowing login bypass"
 
 Toisessa PortSwigger harjoituksessa haavoittuvuus sijaitsi kirjautumislomakkeessa. Tehtävänä oli kirjautua sisään _administrator_ -käyttäjänä sisään. 
 
