@@ -109,7 +109,9 @@ Ohjelman virhe on kohdassa ``strncmp(__s1,"password1",9);``: se tarkistaa, onko 
 
 
 <img width="759" height="228" alt=">9 MERKKIÄ PASSU" src="https://github.com/user-attachments/assets/18ca36e5-5e1f-43dc-bce5-0b1be441e0da" />
+
 _Rajattomasti oikeita salasanoja_
+<br>
 
 "Oikeita" salasanoja on siis käytännössä rajaton määrä.
 
