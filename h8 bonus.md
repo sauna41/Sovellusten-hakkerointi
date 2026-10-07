@@ -291,10 +291,6 @@ ________________________________________________________________________________
 
 <img width="610" height="433" alt="image" src="https://github.com/user-attachments/assets/e50502f2-20e1-47ff-8493-f4263d324646" />
 
-- Dev toolseilla kaikkien syötteiden etsiminen --> secret syöte --> flag
-- 
-
-
 
 
 
