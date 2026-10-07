@@ -75,14 +75,6 @@ SQL-injektio syötettiin sisään kun selain lähetti kirjautumispyynnön HTTPS:
 <img width="628" height="417" alt="logged in" src="https://github.com/user-attachments/assets/ddcad490-5a76-4a6d-9199-5b8102d0483f" />
 
 
-
-
-________________________________________________________________________________________________________________________________________________________________________________________
-
-### h3 No Strings Attached 
-Optional bonus: Cryptopals. Crypto Challenge Set 1. This can be done as a bonus over several weeks. If you solve items 1 .. "4. Detect single-character XOR", you've already stepped into the world of cryptography.
-
-
 ________________________________________________________________________________________________________________________________________________________________________________________
 
 ## h4 Some Disassembly Required
